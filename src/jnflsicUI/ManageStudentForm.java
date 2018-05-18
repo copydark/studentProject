@@ -33,7 +33,7 @@ public class ManageStudentForm extends javax.swing.JFrame {
         bg.add(jRadioButtonfelmale);
         jRadioButtonMan.setSelected(true);
         int numCol = jTable1.getColumnCount();
-        StuTable.fillStudentJtable(jTable1, "", 0, numCol, tableNumOfRecords, tablePages);
+        StuTable.fillStudentJtable((DefaultTableModel)jTable1.getModel(), "", 0, numCol, tableNumOfRecords, tablePages);
         //fillT.fillStuJTable(jTable1,valueToSearch, year);
         jLabelTotalNumPag.setText("/"+StuTable.totalPages());
         model = (DefaultTableModel)jTable1.getModel();
@@ -304,8 +304,8 @@ public class ManageStudentForm extends javax.swing.JFrame {
                 .addComponent(jLabel1)
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
             .addGroup(jPanel1Layout.createSequentialGroup()
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(jPanel1Layout.createSequentialGroup()
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addGroup(javax.swing.GroupLayout.Alignment.LEADING, jPanel1Layout.createSequentialGroup()
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(jPanel1Layout.createSequentialGroup()
                                 .addGap(36, 36, 36)
@@ -321,14 +321,14 @@ public class ManageStudentForm extends javax.swing.JFrame {
                             .addComponent(jTextFieldMiddleName, javax.swing.GroupLayout.Alignment.TRAILING)
                             .addComponent(jTextFieldFirstName)
                             .addComponent(jTextFieldStuID)))
-                    .addGroup(jPanel1Layout.createSequentialGroup()
+                    .addGroup(javax.swing.GroupLayout.Alignment.LEADING, jPanel1Layout.createSequentialGroup()
                         .addGap(76, 76, 76)
                         .addComponent(jLabelSex)
                         .addGap(18, 18, 18)
                         .addComponent(jRadioButtonMan, javax.swing.GroupLayout.PREFERRED_SIZE, 79, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(29, 29, 29)
                         .addComponent(jRadioButtonfelmale))
-                    .addGroup(jPanel1Layout.createSequentialGroup()
+                    .addGroup(javax.swing.GroupLayout.Alignment.LEADING, jPanel1Layout.createSequentialGroup()
                         .addGap(23, 23, 23)
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                             .addComponent(jLabelSex1)
@@ -343,20 +343,19 @@ public class ManageStudentForm extends javax.swing.JFrame {
                             .addGroup(jPanel1Layout.createSequentialGroup()
                                 .addComponent(jComboBoxGrade, javax.swing.GroupLayout.PREFERRED_SIZE, 53, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addGap(0, 0, Short.MAX_VALUE))))
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
-                        .addContainerGap(120, Short.MAX_VALUE)
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addGap(51, 51, 51)
+                        .addComponent(jLabelAddress)
+                        .addGap(18, 18, 18)
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
+                            .addGroup(jPanel1Layout.createSequentialGroup()
                                 .addComponent(jButtonStuAdd, javax.swing.GroupLayout.PREFERRED_SIZE, 77, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addGap(41, 41, 41)
                                 .addComponent(jButtonManageStudent, javax.swing.GroupLayout.PREFERRED_SIZE, 85, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                                 .addComponent(jButtonStuRemove, javax.swing.GroupLayout.PREFERRED_SIZE, 77, javax.swing.GroupLayout.PREFERRED_SIZE))
-                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
-                                .addComponent(jLabelAddress)
-                                .addGap(18, 18, 18)
-                                .addComponent(jScrollPanelAddress, javax.swing.GroupLayout.PREFERRED_SIZE, 251, javax.swing.GroupLayout.PREFERRED_SIZE)))))
-                .addGap(18, 18, Short.MAX_VALUE)
+                            .addComponent(jScrollPanelAddress))))
+                .addGap(18, 18, 18)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
@@ -472,12 +471,13 @@ public class ManageStudentForm extends javax.swing.JFrame {
                             .addGroup(jPanel1Layout.createSequentialGroup()
                                 .addComponent(jLabelStuID)
                                 .addGap(6, 6, 6)
-                                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                                    .addComponent(jTextFieldKeyword, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addComponent(jLabelStuID2)
+                                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                     .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                                         .addComponent(jTextFieldEnrollY, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                        .addComponent(jLabelStuID3)))))
+                                        .addComponent(jLabelStuID3))
+                                    .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                                        .addComponent(jTextFieldKeyword, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                        .addComponent(jLabelStuID2)))))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                         .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 395, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addContainerGap())))
@@ -497,7 +497,7 @@ public class ManageStudentForm extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
     
-    private void clear(){
+    private static void clear(){
         jTextFieldStuID.setText("");
         jTextFieldFirstName.setText("");
         jTextFieldMiddleName.setText("");
@@ -619,36 +619,34 @@ public class ManageStudentForm extends javax.swing.JFrame {
     
     public static void resetTable(){
         //System.out.println("aha");
+        //jTable1 = new javax.swing.JTable();
+        clear();
+        //jTable1.clearSelection();
         tablePages = Integer.parseInt(jTextFieldPage.getText());
         tableNumOfRecords = Integer.parseInt(jTextFieldRecord.getText());
-        
-        jTable1.setModel(new DefaultTableModel(new Object [][] {
-            },
-            new String [] {
+        //jTable1.setModel(null);
+        //System.out.println("BEreset"+jTable1);
+        //model = (DefaultTableModel)jTable1.getModel();
+        DefaultTableModel dtm2 = (DefaultTableModel)jTable1.getModel();
+        dtm2.setDataVector(null, new String [] {
                 "StudentID", "FirstName", "MiddleName", "LastName", "Sex", "Grade", "BirthDate", "Enrolled Year", "Phone", "Address"
-            }));
+            });
+//        jTable1.setModel(new DefaultTableModel(null,
+//            new String [] {
+//                "StudentID", "FirstName", "MiddleName", "LastName", "Sex", "Grade", "BirthDate", "Enrolled Year", "Phone", "Address"
+//            }));
         String key = jTextFieldKeyword.getText();
         int y = 0;
         if(!jTextFieldEnrollY.getText().equals("")){
             y = Integer.parseInt(jTextFieldEnrollY.getText());
         }
-        StuTable.fillStudentJtable(jTable1, key, y, jTable1.getColumnCount(), tableNumOfRecords, tablePages);
+        //System.out.println("reset"+jTable1);
+        StuTable.fillStudentJtable(dtm2, key, y, jTable1.getColumnCount(), tableNumOfRecords, tablePages);
         jLabelTotalNumPag.setText("/"+StuTable.totalPages());
     }
     
     private void jButtonStuSearchActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonStuSearchActionPerformed
         resetTable();
-//        jTable1.setModel(new DefaultTableModel(new Object [][] {
-//            },
-//            new String [] {
-//                "StudentID", "FirstName", "MiddleName", "LastName", "Sex", "Grade", "BirthDate", "Enrolled Year", "Phone", "Address"
-//            }));
-//        String key = jTextFieldKeyword.getText();
-//        int y = 0;
-//        if(!jTextFieldEnrollY.getText().equals("")){
-//            y = Integer.parseInt(jTextFieldEnrollY.getText());
-//        }
-//        StuTable.fillStudentJtable(jTable1, key, y, jTable1.getColumnCount());
     }//GEN-LAST:event_jButtonStuSearchActionPerformed
 
     private void jButtonManageFristActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonManageFristActionPerformed
@@ -691,12 +689,16 @@ public class ManageStudentForm extends javax.swing.JFrame {
 
     private void jTable1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jTable1MouseClicked
         rowIndex = jTable1.getSelectedRow();
+        //System.out.println("select"+jTable1);
        // model = (DefaultTableModel)jTable1.getModel();
         jTextFieldStuID.setText(model.getValueAt(rowIndex, 0).toString());
+        //System.out.println(model.getValueAt(rowIndex, 0).toString());
+        System.out.println(model.getValueAt(rowIndex, 0).toString());
+        //System.out.println("model "+model.toString());
         jTextFieldFirstName.setText(model.getValueAt(rowIndex, 1).toString());
         jTextFieldMiddleName.setText(model.getValueAt(rowIndex, 2).toString());
         jTextFieldLastName.setText(model.getValueAt(rowIndex, 3).toString());
-        if(model.getValueAt(rowIndex, 4).toString()=="m"){
+        if(model.getValueAt(rowIndex, 4).toString().equals("m")){
             jRadioButtonMan.setSelected(true);
         }else{
             jRadioButtonfelmale.setSelected(false);
@@ -724,31 +726,31 @@ public class ManageStudentForm extends javax.swing.JFrame {
         if(evt.getKeyCode()==KeyEvent.VK_UP || evt.getKeyCode()==KeyEvent.VK_DOWN){
             rowIndex = jTable1.getSelectedRow();
            // model = (DefaultTableModel)jTable1.getModel();
-        jTextFieldStuID.setText(model.getValueAt(rowIndex, 0).toString());
-        jTextFieldFirstName.setText(model.getValueAt(rowIndex, 1).toString());
-        jTextFieldMiddleName.setText(model.getValueAt(rowIndex, 2).toString());
-        jTextFieldLastName.setText(model.getValueAt(rowIndex, 3).toString());
-        if(model.getValueAt(rowIndex, 4).toString()=="m"){
-            jRadioButtonMan.setSelected(true);
-        }else{
-            jRadioButtonfelmale.setSelected(false);
-        }
-        String g = model.getValueAt(rowIndex, 5).toString();
-        jComboBoxGrade.setSelectedIndex(Integer.parseInt(g)%10);
-        //System.out.println(model.getValueAt(rowIndex, 6));
-        String d = model.getValueAt(rowIndex, 6).toString();
-        SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
-        try {
-            Date date = sdf.parse(d);
-            Calendar calendar = Calendar.getInstance();
-            calendar.setTime(date);
-            dateChooserCombo.setSelectedDate(calendar);
-        } catch (ParseException ex) {
-            Logger.getLogger(ManageStudentForm.class.getName()).log(Level.SEVERE, null, ex);
-        }
-        jTextFieldYear.setText(model.getValueAt(rowIndex, 7).toString());
-        jTextFieldPhone.setText(model.getValueAt(rowIndex, 8).toString());
-        jTextAreaAddress.setText(model.getValueAt(rowIndex, 9).toString());
+            jTextFieldStuID.setText(model.getValueAt(rowIndex, 0).toString());
+            jTextFieldFirstName.setText(model.getValueAt(rowIndex, 1).toString());
+            jTextFieldMiddleName.setText(model.getValueAt(rowIndex, 2).toString());
+            jTextFieldLastName.setText(model.getValueAt(rowIndex, 3).toString());
+            if(model.getValueAt(rowIndex, 4).toString()=="m"){
+                jRadioButtonMan.setSelected(true);
+            }else{
+                jRadioButtonfelmale.setSelected(false);
+            }
+            String g = model.getValueAt(rowIndex, 5).toString();
+            jComboBoxGrade.setSelectedIndex(Integer.parseInt(g)%10);
+            //System.out.println(model.getValueAt(rowIndex, 6));
+            String d = model.getValueAt(rowIndex, 6).toString();
+            SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
+            try {
+                Date date = sdf.parse(d);
+                Calendar calendar = Calendar.getInstance();
+                calendar.setTime(date);
+                dateChooserCombo.setSelectedDate(calendar);
+            } catch (ParseException ex) {
+                Logger.getLogger(ManageStudentForm.class.getName()).log(Level.SEVERE, null, ex);
+            }
+            jTextFieldYear.setText(model.getValueAt(rowIndex, 7).toString());
+            jTextFieldPhone.setText(model.getValueAt(rowIndex, 8).toString());
+            jTextAreaAddress.setText(model.getValueAt(rowIndex, 9).toString());
         }
     }//GEN-LAST:event_jTable1KeyReleased
 
@@ -797,7 +799,7 @@ public class ManageStudentForm extends javax.swing.JFrame {
     }
     
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private datechooser.beans.DateChooserCombo dateChooserCombo;
+    private static datechooser.beans.DateChooserCombo dateChooserCombo;
     private javax.swing.JButton jButtonManageFrist;
     private javax.swing.JButton jButtonManageFrist1;
     private javax.swing.JButton jButtonManagePre;
@@ -806,7 +808,7 @@ public class ManageStudentForm extends javax.swing.JFrame {
     private javax.swing.JButton jButtonStuAdd;
     private javax.swing.JButton jButtonStuRemove;
     private javax.swing.JButton jButtonStuSearch;
-    private javax.swing.JComboBox jComboBoxGrade;
+    private static javax.swing.JComboBox jComboBoxGrade;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabelAddress;
     private javax.swing.JLabel jLabelBirthdate;
@@ -825,25 +827,25 @@ public class ManageStudentForm extends javax.swing.JFrame {
     private javax.swing.JLabel jLabelTotalNumPag1;
     private javax.swing.JLabel jLabelmRe;
     private javax.swing.JPanel jPanel1;
-    private javax.swing.JRadioButton jRadioButtonMan;
-    private javax.swing.JRadioButton jRadioButtonfelmale;
+    private static javax.swing.JRadioButton jRadioButtonMan;
+    private static javax.swing.JRadioButton jRadioButtonfelmale;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JScrollPane jScrollPanelAddress;
     public static javax.swing.JTable jTable1;
-    private javax.swing.JTextArea jTextAreaAddress;
+    private static javax.swing.JTextArea jTextAreaAddress;
     private static javax.swing.JTextField jTextFieldEnrollY;
-    private javax.swing.JTextField jTextFieldFirstName;
+    private static javax.swing.JTextField jTextFieldFirstName;
     private static javax.swing.JTextField jTextFieldKeyword;
-    private javax.swing.JTextField jTextFieldLastName;
-    private javax.swing.JTextField jTextFieldMiddleName;
+    private static javax.swing.JTextField jTextFieldLastName;
+    private static javax.swing.JTextField jTextFieldMiddleName;
     private static javax.swing.JTextField jTextFieldPage;
-    private javax.swing.JTextField jTextFieldPhone;
+    private static javax.swing.JTextField jTextFieldPhone;
     public static javax.swing.JTextField jTextFieldRecord;
-    private javax.swing.JTextField jTextFieldStuID;
-    private javax.swing.JTextField jTextFieldYear;
+    private static javax.swing.JTextField jTextFieldStuID;
+    private static javax.swing.JTextField jTextFieldYear;
     // End of variables declaration//GEN-END:variables
     private static int tablePages = 1;
     private static int tableNumOfRecords = 10;
     private static int rowIndex = 0;
-    DefaultTableModel model = null;
+    private static DefaultTableModel model = null;
 }

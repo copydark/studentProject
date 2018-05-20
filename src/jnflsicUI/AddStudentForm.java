@@ -372,10 +372,11 @@ public class AddStudentForm extends javax.swing.JFrame {
         String pNum = jTextFieldPhone.getText();
         String add = jTextAreaAddress.getText();
         //String firstName, String middleName, String lastName, char sex, int grade, Calendar birthday, int year, String phoneNum, String add
-        Student st = new Student(fN,mN,lN,sex,grade,bd,year,pNum,add);
+
         if(!verify()){
             return;
         }
+        Student st = new Student(fN,mN,lN,sex,grade,bd,year,pNum,add);
         if(Student.operateData('i', st)){
             ManageStudentForm.resetTable();
             clear();

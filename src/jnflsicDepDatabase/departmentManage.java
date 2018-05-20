@@ -1,36 +1,34 @@
 
-package jnflsicDatabase;
+package jnflsicDepDatabase;
 
+import jnflsicDatabase.*;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
-import java.sql.SQLException;
-import java.util.Calendar;
 import java.util.logging.Level;
 import java.util.logging.Logger;
-import javax.swing.JOptionPane;
 import jnflsicDataProcess.Pages;
-import jnflsicDataProcess.Student;
+import jnflsicDepDataProcess.Department;
 
-public class studentManage {
+public class departmentManage {
     private static Pages p;
-    public static Student[] getStudent(String keyword, int year, int numOfRecordPrePage, int curPage){
+    public static Department[] getDepartment(String keyword, String leader, int numOfRecordPrePage, int curPage){
        p = new Pages(curPage, numOfRecordPrePage);
        
         try {
             //String firstName, String middleName, String lastName, char sex, int grade, Calendar birthday, int year, String phoneNum, String add
-            String sql = "Select stuID, first_name, middle_name, last_name, sex, birthdate, grade, enrollYear, phone, address FROM jnflsic_sch_info.ic_student";
+            String sql = "Select depID, depname, depPhone, depDescription, depLeader FROM jnflsic_sch_info.ic_department";
 
             String where="";
             if(!keyword.equals("")){
-                where = " where (first_name like '%"+keyword+"%' or middle_name like '%"+keyword+"%' or last_name like '%"+keyword+"%')";
-                if(year!=0){
-                    where += " and enrollYear="+year;
+                where = " where (depname like '%"+keyword+"%')";
+                if(!leader.equals("")){
+                    where += " (depLeader like '%"+leader+"%')";
                 }
             //String countSQL = "Select count(stuID) FROM jnflsic_sch_info.ic_student";
             }else{
-                if(year!=0){
-                    where = " where enrollYear="+year;
+                if(!leader.equals("")){
+                    where = " where (depLeader like '%"+leader+"%')";
                 }
             }
             setTotalPage(where);
@@ -58,28 +56,20 @@ public class studentManage {
                 numOfRows = size;
             }
 
-           Student []s = new Student[numOfRows];
+           Department []d = new Department[numOfRows];
            int i = 0;
             while(rs.next()){
-                s[i] = new Student();
-                s[i].setID(rs.getInt(1));
-                s[i].setFName(rs.getString(2));           
-                s[i].setMName(rs.getString(3));
-                s[i].setLName(rs.getString(4));
-                s[i].setSex(rs.getString(5).charAt(0));
-                Calendar c = Calendar.getInstance();
-                c.setTime(rs.getDate(6));
-                s[i].setDate(c);
-                s[i].setGrade(rs.getInt(7));
-                s[i].setYear(rs.getInt(8));
-                s[i].setPhone(rs.getString(9));
-                s[i].setAdd(rs.getString(10));
-                
+                d[i] = new Department();
+                d[i].setID(rs.getInt(1));
+                d[i].setName(rs.getString(2));           
+                d[i].setPhone(rs.getString(3));
+                d[i].setDescription(rs.getString(4));
+                d[i].setLeader(rs.getString(5));
                 i++;
             }               
             ps.close();
             con.close();
-            return s;
+            return d;
         } catch (Exception e) {
             System.err.println(e);
         }
@@ -88,12 +78,12 @@ public class studentManage {
     
     
     private static void setTotalPage(String where){
-        String countSQL = "Select count(stuID) FROM jnflsic_sch_info.ic_student";
+        String countSQL = "Select count(depID) FROM jnflsic_sch_info.ic_department";
         try {
             int row = connectDatabase.numberOfRow(countSQL+where);
             p.setTotalPages(row);
         } catch (Exception ex) {
-            Logger.getLogger(studentManage.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(departmentManage.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
     

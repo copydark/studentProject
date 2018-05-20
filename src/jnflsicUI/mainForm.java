@@ -30,6 +30,11 @@ public class mainForm extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
+        jMenu1 = new javax.swing.JMenu();
+        jMenuBar2 = new javax.swing.JMenuBar();
+        jMenu2 = new javax.swing.JMenu();
+        jMenu3 = new javax.swing.JMenu();
+        jMenuItem1 = new javax.swing.JMenuItem();
         jPanel1 = new javax.swing.JPanel();
         jLabelWelcome = new javax.swing.JLabel();
         jLabelDateTime = new javax.swing.JLabel();
@@ -37,6 +42,19 @@ public class mainForm extends javax.swing.JFrame {
         jMenuSt = new javax.swing.JMenu();
         jMenuItemAdd = new javax.swing.JMenuItem();
         jMenuItemStuManage = new javax.swing.JMenuItem();
+        jMenu4 = new javax.swing.JMenu();
+        jMenuItemAddDep = new javax.swing.JMenuItem();
+        jMenuItemManDep = new javax.swing.JMenuItem();
+
+        jMenu1.setText("jMenu1");
+
+        jMenu2.setText("File");
+        jMenuBar2.add(jMenu2);
+
+        jMenu3.setText("Edit");
+        jMenuBar2.add(jMenu3);
+
+        jMenuItem1.setText("jMenuItem1");
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -81,7 +99,6 @@ public class mainForm extends javax.swing.JFrame {
         jMenuSt.add(jMenuItemAdd);
 
         jMenuItemStuManage.setText("Manage");
-        jMenuItemStuManage.setActionCommand("Manage");
         jMenuItemStuManage.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jMenuItemStuManageActionPerformed(evt);
@@ -90,6 +107,26 @@ public class mainForm extends javax.swing.JFrame {
         jMenuSt.add(jMenuItemStuManage);
 
         jMenuBar1.add(jMenuSt);
+
+        jMenu4.setText("Department");
+
+        jMenuItemAddDep.setText("Add Department");
+        jMenuItemAddDep.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jMenuItemAddDepActionPerformed(evt);
+            }
+        });
+        jMenu4.add(jMenuItemAddDep);
+
+        jMenuItemManDep.setText("Manage Department");
+        jMenuItemManDep.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jMenuItemManDepActionPerformed(evt);
+            }
+        });
+        jMenu4.add(jMenuItemManDep);
+
+        jMenuBar1.add(jMenu4);
 
         setJMenuBar(jMenuBar1);
 
@@ -121,6 +158,22 @@ public class mainForm extends javax.swing.JFrame {
             stM.setLocationRelativeTo(null);
             stM.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
     }//GEN-LAST:event_jMenuItemStuManageActionPerformed
+
+    private void jMenuItemAddDepActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItemAddDepActionPerformed
+            AddDepartmentForm depF = new AddDepartmentForm();
+            depF.setVisible(true);
+            depF.pack();
+            depF.setLocationRelativeTo(null);
+            depF.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
+    }//GEN-LAST:event_jMenuItemAddDepActionPerformed
+
+    private void jMenuItemManDepActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItemManDepActionPerformed
+            ManageDepForm mdepF = new ManageDepForm();
+            mdepF.setVisible(true);
+            mdepF.pack();
+            mdepF.setLocationRelativeTo(null);
+            mdepF.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
+    }//GEN-LAST:event_jMenuItemManDepActionPerformed
 
     /**
      * @param args the command line arguments
@@ -160,8 +213,16 @@ public class mainForm extends javax.swing.JFrame {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     public javax.swing.JLabel jLabelDateTime;
     public javax.swing.JLabel jLabelWelcome;
+    private javax.swing.JMenu jMenu1;
+    private javax.swing.JMenu jMenu2;
+    private javax.swing.JMenu jMenu3;
+    private javax.swing.JMenu jMenu4;
     private javax.swing.JMenuBar jMenuBar1;
+    private javax.swing.JMenuBar jMenuBar2;
+    private javax.swing.JMenuItem jMenuItem1;
     private javax.swing.JMenuItem jMenuItemAdd;
+    private javax.swing.JMenuItem jMenuItemAddDep;
+    private javax.swing.JMenuItem jMenuItemManDep;
     private javax.swing.JMenuItem jMenuItemStuManage;
     private javax.swing.JMenu jMenuSt;
     private javax.swing.JPanel jPanel1;

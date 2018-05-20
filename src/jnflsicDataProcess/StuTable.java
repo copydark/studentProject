@@ -3,7 +3,6 @@ package jnflsicDataProcess;
 
 import java.text.SimpleDateFormat;
 import java.util.Locale;
-import javax.swing.JTable;
 import javax.swing.table.DefaultTableModel;
 import jnflsicDatabase.studentManage;
 

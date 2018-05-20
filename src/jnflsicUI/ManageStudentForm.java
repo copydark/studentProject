@@ -94,8 +94,8 @@ public class ManageStudentForm extends javax.swing.JFrame {
         jLabelTotalNumPag1 = new javax.swing.JLabel();
         jTextFieldRecord = new javax.swing.JTextField();
         jLabelmRe = new javax.swing.JLabel();
-        jButtonManageFrist1 = new javax.swing.JButton();
-        jButtonManagePre1 = new javax.swing.JButton();
+        jButtonManageNext = new javax.swing.JButton();
+        jButtonManageLast = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -281,17 +281,17 @@ public class ManageStudentForm extends javax.swing.JFrame {
         jLabelmRe.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
         jLabelmRe.setText("Records/per page");
 
-        jButtonManageFrist1.setText("Next");
-        jButtonManageFrist1.addActionListener(new java.awt.event.ActionListener() {
+        jButtonManageNext.setText("Next");
+        jButtonManageNext.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButtonManageFrist1ActionPerformed(evt);
+                jButtonManageNextActionPerformed(evt);
             }
         });
 
-        jButtonManagePre1.setText("Last");
-        jButtonManagePre1.addActionListener(new java.awt.event.ActionListener() {
+        jButtonManageLast.setText("Last");
+        jButtonManageLast.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButtonManagePre1ActionPerformed(evt);
+                jButtonManageLastActionPerformed(evt);
             }
         });
 
@@ -375,9 +375,9 @@ public class ManageStudentForm extends javax.swing.JFrame {
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                                 .addComponent(jLabelmRe)
                                 .addGap(50, 50, 50)
-                                .addComponent(jButtonManageFrist1, javax.swing.GroupLayout.PREFERRED_SIZE, 85, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addComponent(jButtonManageNext, javax.swing.GroupLayout.PREFERRED_SIZE, 85, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                .addComponent(jButtonManagePre1, javax.swing.GroupLayout.PREFERRED_SIZE, 85, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                .addComponent(jButtonManageLast, javax.swing.GroupLayout.PREFERRED_SIZE, 85, javax.swing.GroupLayout.PREFERRED_SIZE))
                             .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 776, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addContainerGap())
                     .addGroup(jPanel1Layout.createSequentialGroup()
@@ -450,8 +450,8 @@ public class ManageStudentForm extends javax.swing.JFrame {
                                 .addGap(367, 367, 367)
                                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                     .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                                        .addComponent(jButtonManageFrist1, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                        .addComponent(jButtonManagePre1, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                        .addComponent(jButtonManageNext, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                        .addComponent(jButtonManageLast, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE)
                                         .addComponent(jTextFieldPage, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                                         .addComponent(jLabelTotalNumPag)
                                         .addComponent(jLabelTotalNumPag1)
@@ -638,14 +638,26 @@ public class ManageStudentForm extends javax.swing.JFrame {
         String key = jTextFieldKeyword.getText();
         int y = 0;
         if(!jTextFieldEnrollY.getText().equals("")){
-            y = Integer.parseInt(jTextFieldEnrollY.getText());
+            if(isNumeric(jTextFieldEnrollY.getText())){
+                y = Integer.parseInt(jTextFieldEnrollY.getText());
+            }
         }
         //System.out.println("reset"+jTable1);
         StuTable.fillStudentJtable(dtm2, key, y, jTable1.getColumnCount(), tableNumOfRecords, tablePages);
         jLabelTotalNumPag.setText("/"+StuTable.totalPages());
     }
     
+    private static boolean isNumeric(String str) {  
+      for (int i = str.length(); --i >= 0;) {     
+       if (!Character.isDigit(str.charAt(i))) {  
+        return false;  
+       }  
+      }  
+       return true;  
+    } 
+    
     private void jButtonStuSearchActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonStuSearchActionPerformed
+        jTextFieldPage.setText("1");
         resetTable();
     }//GEN-LAST:event_jButtonStuSearchActionPerformed
 
@@ -667,7 +679,7 @@ public class ManageStudentForm extends javax.swing.JFrame {
         resetTable();
     }//GEN-LAST:event_jButtonManagePreActionPerformed
 
-    private void jButtonManageFrist1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonManageFrist1ActionPerformed
+    private void jButtonManageNextActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonManageNextActionPerformed
         int n = Integer.parseInt(jTextFieldPage.getText())+1;
         if(n>Integer.parseInt(jLabelTotalNumPag.getText().substring(1, 2))){
             n = Integer.parseInt(jLabelTotalNumPag.getText().substring(1, 2));
@@ -676,16 +688,16 @@ public class ManageStudentForm extends javax.swing.JFrame {
         tableNumOfRecords = Integer.parseInt(jTextFieldRecord.getText());
         //jTextFieldPage.setText(tablePages+"");
         resetTable();
-    }//GEN-LAST:event_jButtonManageFrist1ActionPerformed
+    }//GEN-LAST:event_jButtonManageNextActionPerformed
 
-    private void jButtonManagePre1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonManagePre1ActionPerformed
+    private void jButtonManageLastActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonManageLastActionPerformed
         //tablePages = Integer.parseInt(jLabelTotalNumPag.getText().substring(1,2));
                 //tablePages = 1;
         jTextFieldPage.setText(jLabelTotalNumPag.getText().substring(1,2));
         tableNumOfRecords = Integer.parseInt(jTextFieldRecord.getText());
         //jTextFieldPage.setText(tablePages+"");
         resetTable();
-    }//GEN-LAST:event_jButtonManagePre1ActionPerformed
+    }//GEN-LAST:event_jButtonManageLastActionPerformed
 
     private void jTable1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jTable1MouseClicked
         rowIndex = jTable1.getSelectedRow();
@@ -801,9 +813,9 @@ public class ManageStudentForm extends javax.swing.JFrame {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private static datechooser.beans.DateChooserCombo dateChooserCombo;
     private javax.swing.JButton jButtonManageFrist;
-    private javax.swing.JButton jButtonManageFrist1;
+    private javax.swing.JButton jButtonManageLast;
+    private javax.swing.JButton jButtonManageNext;
     private javax.swing.JButton jButtonManagePre;
-    private javax.swing.JButton jButtonManagePre1;
     private javax.swing.JButton jButtonManageStudent;
     private javax.swing.JButton jButtonStuAdd;
     private javax.swing.JButton jButtonStuRemove;

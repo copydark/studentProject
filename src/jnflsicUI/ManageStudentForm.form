@@ -134,9 +134,9 @@
                                   <EmptySpace type="unrelated" max="-2" attributes="0"/>
                                   <Component id="jLabelmRe" min="-2" max="-2" attributes="0"/>
                                   <EmptySpace min="-2" pref="50" max="-2" attributes="0"/>
-                                  <Component id="jButtonManageFrist1" min="-2" pref="85" max="-2" attributes="0"/>
+                                  <Component id="jButtonManageNext" min="-2" pref="85" max="-2" attributes="0"/>
                                   <EmptySpace type="unrelated" max="-2" attributes="0"/>
-                                  <Component id="jButtonManagePre1" min="-2" pref="85" max="-2" attributes="0"/>
+                                  <Component id="jButtonManageLast" min="-2" pref="85" max="-2" attributes="0"/>
                               </Group>
                               <Component id="jScrollPane1" min="-2" pref="776" max="-2" attributes="0"/>
                           </Group>
@@ -229,8 +229,8 @@
                                   <EmptySpace min="-2" pref="367" max="-2" attributes="0"/>
                                   <Group type="103" groupAlignment="0" attributes="0">
                                       <Group type="103" groupAlignment="3" attributes="0">
-                                          <Component id="jButtonManageFrist1" alignment="3" min="-2" pref="32" max="-2" attributes="0"/>
-                                          <Component id="jButtonManagePre1" alignment="3" min="-2" pref="32" max="-2" attributes="0"/>
+                                          <Component id="jButtonManageNext" alignment="3" min="-2" pref="32" max="-2" attributes="0"/>
+                                          <Component id="jButtonManageLast" alignment="3" min="-2" pref="32" max="-2" attributes="0"/>
                                           <Component id="jTextFieldPage" alignment="3" min="-2" max="-2" attributes="0"/>
                                           <Component id="jLabelTotalNumPag" alignment="3" min="-2" max="-2" attributes="0"/>
                                           <Component id="jLabelTotalNumPag1" alignment="3" min="-2" max="-2" attributes="0"/>
@@ -740,20 +740,20 @@
             <Property name="text" type="java.lang.String" value="Records/per page"/>
           </Properties>
         </Component>
-        <Component class="javax.swing.JButton" name="jButtonManageFrist1">
+        <Component class="javax.swing.JButton" name="jButtonManageNext">
           <Properties>
             <Property name="text" type="java.lang.String" value="Next"/>
           </Properties>
           <Events>
-            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jButtonManageFrist1ActionPerformed"/>
+            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jButtonManageNextActionPerformed"/>
           </Events>
         </Component>
-        <Component class="javax.swing.JButton" name="jButtonManagePre1">
+        <Component class="javax.swing.JButton" name="jButtonManageLast">
           <Properties>
             <Property name="text" type="java.lang.String" value="Last"/>
           </Properties>
           <Events>
-            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jButtonManagePre1ActionPerformed"/>
+            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jButtonManageLastActionPerformed"/>
           </Events>
         </Component>
       </SubComponents>

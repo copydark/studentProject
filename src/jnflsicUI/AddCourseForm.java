@@ -273,7 +273,9 @@ public class AddCourseForm extends javax.swing.JFrame {
         cos.setDepartmentID(departmentID);
         
         if(Course.operateData('i', cos)){
-            ManageCourseForm.resetTable();
+            if(ManageCourseForm.tableExist()){
+                ManageCourseForm.resetTable();
+            }
             clear();
         }
     }//GEN-LAST:event_jButtonAddCourseActionPerformed

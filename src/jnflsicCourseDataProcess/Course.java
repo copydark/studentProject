@@ -4,6 +4,7 @@ package jnflsicCourseDataProcess;
 import jnflsicCourseDatabase.CourseData;
 
 public class Course {
+    private int courseID;
     private String courseName;   
     private String preReq;
     private String description;  
@@ -26,6 +27,10 @@ public class Course {
         area = a;
         department = depart;
         departmentID = CourseData.getDepartID(depart);
+    }
+    
+    public int getCourseID(){
+        return courseID;
     }
     
     public String getCourseName(){
@@ -60,6 +65,10 @@ public class Course {
         return department;
     }
     
+    public void setCourseID(int id){
+        courseID = id;
+    }
+    
     public void setName(String c){
         courseName = c;
     }
@@ -85,20 +94,28 @@ public class Course {
     }
     
     public void setDepartmentID(int d){
+        //System.out.println(department);
+        if(department==null||department.equals("")){
+            department = CourseData.getDepartName(d);
+            
+        }
         departmentID = d;
     }
     
     public void setDepartmentName(String dep){
+        if(departmentID <= 0){
+            departmentID = CourseData.getDepartID(dep);
+        }
         department = dep;
     }
     
-    public static boolean operateData(char oper, Course d){
+    public static boolean operateData(char oper, Course c){
         if(oper == 'i'){
-            return CourseData.insertData(d);
+            return CourseData.insertData(c);
         }else if(oper == 'u'){
-            return CourseData.updateData(d);
+            return CourseData.updateData(c);
         }else{
-            return CourseData.delateData(d);
+            return CourseData.delateData(c);
         }
     }
 }

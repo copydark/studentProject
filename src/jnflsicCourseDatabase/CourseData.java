@@ -7,7 +7,6 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import javax.swing.JOptionPane;
 import jnflsicCourseDataProcess.Course;
-import jnflsicDepDataProcess.Department;
 
 public class CourseData {
     
@@ -105,6 +104,34 @@ public class CourseData {
         return departmentList;
     }
     
+    public static String getDepartName(int dID){
+        try {
+            //String firstName, String middleName, String lastName, char sex, int grade, Calendar birthday, int year, String phoneNum, String add
+            String sql = "SELECT depName FROM ic_department where depID = '"+dID+"';";
+            Connection con = connectDatabase.getConnection();
+            PreparedStatement ps;
+            
+            ps = con.prepareStatement(sql);
+            
+            System.out.println(ps);
+            ResultSet rs = ps.executeQuery();
+            //int rs = ps.executeUpdate();
+            if(rs.next()) {
+//                JOptionPane.showMessageDialog(null, "New Course Added");
+                String depName = rs.getString(1);
+                ps.close();
+                con.close();
+                return depName;
+            }
+
+            ps.close();
+            con.close();
+        } catch (Exception e) {
+            System.err.println(e);
+        }
+        return null;
+    }
+    
     public static int getDepartID(String dName){
         try {
             //String firstName, String middleName, String lastName, char sex, int grade, Calendar birthday, int year, String phoneNum, String add
@@ -136,14 +163,14 @@ public class CourseData {
     public static boolean updateData(Course c){
         try {
             //String firstName, String middleName, String lastName, char sex, int grade, Calendar birthday, int year, String phoneNum, String add
-            String sql = "UPDATE jnflsic_sch_info.ic_course SET courseID = ?, courseName = ?, courseDescription = ?, courseActive = ?, courseValue = ?, coursePreReq = ?, courseDepartmentID = ?, courseArea = ?;";
+            String sql = "UPDATE jnflsic_sch_info.ic_course SET courseID = ?, courseName = ?, courseDescription = ?, courseActive = ?, courseValue = ?, coursePreReq = ?, courseDepartmentID = ?, courseArea = ? WHERE courseID = ?;";
             //String sql = "UPDATE jnflsic_sch_info.ic_department SET depID = ?, depName = ?, depPhone = ?, depDescription = ?, depLeader = ? WHERE depID = ?;";
             
             Connection con = connectDatabase.getConnection();
             PreparedStatement ps;
             System.out.println(sql);
             ps = con.prepareStatement(sql);
-            String courseName = c.getDepartmentName();            
+            String courseName = c.getCourseName();            
             ps.setInt(1, toHash(courseName));
             ps.setString(2, courseName);
             ps.setString(3, c.getDescription());
@@ -152,7 +179,7 @@ public class CourseData {
             ps.setString(6, c.getPReq());
             ps.setInt(7, c.getDepartmentID());
             ps.setString(8,c.getArea());
-            
+            ps.setInt(9,c.getCourseID());
             System.out.println(ps);
             int rs = ps.executeUpdate();
             System.out.println(rs);
@@ -174,14 +201,14 @@ public class CourseData {
     public static boolean delateData(Course c) {
         try {
             //String firstName, String middleName, String lastName, char sex, int grade, Calendar birthday, int year, String phoneNum, String add
-            String sql = "DELETE FROM jnflsic_sch_info.ic_course WHERE ic_department.courseID = ?";
+            String sql = "DELETE FROM jnflsic_sch_info.ic_course WHERE ic_course.courseID = ?";
             
             Connection con = connectDatabase.getConnection();
             PreparedStatement ps;
             System.out.println(sql);
             ps = con.prepareStatement(sql);
 
-            ps.setInt(1, c.getDepartmentID());
+            ps.setInt(1, c.getCourseID());
             System.out.println(ps);
             int rs = ps.executeUpdate();
             System.out.println(rs);

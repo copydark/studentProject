@@ -66,7 +66,7 @@ public class AddCourseForm extends javax.swing.JFrame {
         jLabelFirstName.setText("Course Name:");
 
         jLabelLastName1.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
-        jLabelLastName1.setText("Department Description:");
+        jLabelLastName1.setText("Course Description:");
 
         jLabelPhone.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
         jLabelPhone.setText("Course Active:");
@@ -147,7 +147,7 @@ public class AddCourseForm extends javax.swing.JFrame {
                         .addGap(18, 18, 18)
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(jTextFieldCourseName)
-                            .addComponent(jScrollPanelAddress, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 293, Short.MAX_VALUE)
+                            .addComponent(jScrollPanelAddress, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 297, Short.MAX_VALUE)
                             .addComponent(jTextFieldPrerequirement)
                             .addComponent(jComboBoxDepartment, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                             .addComponent(jComboBoxArea, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
@@ -273,7 +273,7 @@ public class AddCourseForm extends javax.swing.JFrame {
         cos.setDepartmentID(departmentID);
         
         if(Course.operateData('i', cos)){
-//            ManageDepForm.resetTable();
+            ManageCourseForm.resetTable();
             clear();
         }
     }//GEN-LAST:event_jButtonAddCourseActionPerformed
@@ -342,6 +342,7 @@ public class AddCourseForm extends javax.swing.JFrame {
             jComboBoxDepartment.addItem(departmentList[i]);
         }
     }
+    
     private void middleScreen(){
         double width = Toolkit.getDefaultToolkit().getScreenSize().getWidth();
         double height = Toolkit.getDefaultToolkit().getScreenSize().getHeight();

@@ -89,10 +89,18 @@
           <SubComponents>
             <MenuItem class="javax.swing.JMenuItem" name="jMenuItemAddCourse">
               <Properties>
-                <Property name="text" type="java.lang.String" value="AddCourse"/>
+                <Property name="text" type="java.lang.String" value="Add Course"/>
               </Properties>
               <Events>
                 <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jMenuItemAddCourseActionPerformed"/>
+              </Events>
+            </MenuItem>
+            <MenuItem class="javax.swing.JMenuItem" name="jMenuItemCourseManage">
+              <Properties>
+                <Property name="text" type="java.lang.String" value="Course Manage"/>
+              </Properties>
+              <Events>
+                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jMenuItemCourseManageActionPerformed"/>
               </Events>
             </MenuItem>
           </SubComponents>

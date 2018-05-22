@@ -47,6 +47,7 @@ public class mainForm extends javax.swing.JFrame {
         jMenuItemManDep = new javax.swing.JMenuItem();
         jMenuCourse = new javax.swing.JMenu();
         jMenuItemAddCourse = new javax.swing.JMenuItem();
+        jMenuItemCourseManage = new javax.swing.JMenuItem();
 
         jMenu1.setText("jMenu1");
 
@@ -132,13 +133,21 @@ public class mainForm extends javax.swing.JFrame {
 
         jMenuCourse.setText("Course");
 
-        jMenuItemAddCourse.setText("AddCourse");
+        jMenuItemAddCourse.setText("Add Course");
         jMenuItemAddCourse.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jMenuItemAddCourseActionPerformed(evt);
             }
         });
         jMenuCourse.add(jMenuItemAddCourse);
+
+        jMenuItemCourseManage.setText("Course Manage");
+        jMenuItemCourseManage.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jMenuItemCourseManageActionPerformed(evt);
+            }
+        });
+        jMenuCourse.add(jMenuItemCourseManage);
 
         jMenuBar1.add(jMenuCourse);
 
@@ -197,6 +206,14 @@ public class mainForm extends javax.swing.JFrame {
             ACF.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
     }//GEN-LAST:event_jMenuItemAddCourseActionPerformed
 
+    private void jMenuItemCourseManageActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItemCourseManageActionPerformed
+            ManageCourseForm MCF = new ManageCourseForm();
+            MCF.setVisible(true);
+            MCF.pack();
+            MCF.setLocationRelativeTo(null);
+            MCF.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
+    }//GEN-LAST:event_jMenuItemCourseManageActionPerformed
+
     /**
      * @param args the command line arguments
      */
@@ -246,6 +263,7 @@ public class mainForm extends javax.swing.JFrame {
     private javax.swing.JMenuItem jMenuItemAdd;
     private javax.swing.JMenuItem jMenuItemAddCourse;
     private javax.swing.JMenuItem jMenuItemAddDep;
+    private javax.swing.JMenuItem jMenuItemCourseManage;
     private javax.swing.JMenuItem jMenuItemManDep;
     private javax.swing.JMenuItem jMenuItemStuManage;
     private javax.swing.JMenu jMenuSt;

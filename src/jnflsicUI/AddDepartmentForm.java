@@ -224,7 +224,9 @@ public class AddDepartmentForm extends javax.swing.JFrame {
         
         Department dep = new Department(deptName, phone, leader, description);
         if(Department.operateData('i', dep)){
-            ManageDepForm.resetTable();
+            if(ManageDepForm.tableExist()){
+                ManageDepForm.resetTable();
+            }
             clear();
         }
     }//GEN-LAST:event_jButtonAddStudentActionPerformed

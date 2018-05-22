@@ -470,6 +470,10 @@ public class ManageDepForm extends javax.swing.JFrame {
         }
     }//GEN-LAST:event_jButtonDepRemoveActionPerformed
     
+    public static boolean tableExist(){
+        return jTable1 != null;
+    }
+    
     public static void resetTable(){
         clear();
         tablePages = Integer.parseInt(jTextFieldPage.getText());

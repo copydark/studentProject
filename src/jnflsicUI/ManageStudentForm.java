@@ -617,6 +617,10 @@ public class ManageStudentForm extends javax.swing.JFrame {
         }
     }//GEN-LAST:event_jButtonStuRemoveActionPerformed
     
+    public static boolean tableExist(){
+        return jTable1 != null;
+    }
+    
     public static void resetTable(){
         //System.out.println("aha");
         //jTable1 = new javax.swing.JTable();

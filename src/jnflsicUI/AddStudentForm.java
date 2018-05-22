@@ -9,7 +9,6 @@ import java.awt.Toolkit;
 import java.util.Calendar;
 import java.util.Date;
 import javax.swing.ButtonGroup;
-import javax.swing.JFrame;
 import javax.swing.JOptionPane;
 import jnflsicDataProcess.Student;
 
@@ -378,7 +377,9 @@ public class AddStudentForm extends javax.swing.JFrame {
         }
         Student st = new Student(fN,mN,lN,sex,grade,bd,year,pNum,add);
         if(Student.operateData('i', st)){
-            ManageStudentForm.resetTable();
+            if(ManageStudentForm.tableExist()){
+                ManageStudentForm.resetTable();
+            }
             clear();
         }
     }//GEN-LAST:event_jButtonAddStudentActionPerformed

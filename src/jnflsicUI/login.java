@@ -160,13 +160,13 @@ public class login extends javax.swing.JFrame {
     private void jButtonLoginActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonLoginActionPerformed
         jLabelStarU.setVisible(false);
         jLabelStarP.setVisible(false);
-        
+
         String u = textUserName.getText();
         char[] p = textPassword.getPassword();
         
 
         
-        if(String.valueOf(p).equals("")){
+        if(p.length==0){
             jLabelStarP.setVisible(true);
             jLabelNotice.setText("Please enter password");
         }
@@ -176,7 +176,7 @@ public class login extends javax.swing.JFrame {
             jLabelNotice.setText("Please enter username");
         }
         
-        if(u.equals("")||String.valueOf(p).equals("")){
+        if(u.equals("")||p.length==0){
             return;
         }
         

@@ -48,6 +48,9 @@ public class mainForm extends javax.swing.JFrame {
         jMenuCourse = new javax.swing.JMenu();
         jMenuItemAddCourse = new javax.swing.JMenuItem();
         jMenuItemCourseManage = new javax.swing.JMenuItem();
+        jMenuTeacher = new javax.swing.JMenu();
+        jMenuItemAddTeacher = new javax.swing.JMenuItem();
+        jMenuItemManageTeacher = new javax.swing.JMenuItem();
 
         jMenu1.setText("jMenu1");
 
@@ -151,6 +154,26 @@ public class mainForm extends javax.swing.JFrame {
 
         jMenuBar1.add(jMenuCourse);
 
+        jMenuTeacher.setText("Teacher");
+
+        jMenuItemAddTeacher.setText("Add Teacher");
+        jMenuItemAddTeacher.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jMenuItemAddTeacherActionPerformed(evt);
+            }
+        });
+        jMenuTeacher.add(jMenuItemAddTeacher);
+
+        jMenuItemManageTeacher.setText("Manage Teacher");
+        jMenuItemManageTeacher.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jMenuItemManageTeacherActionPerformed(evt);
+            }
+        });
+        jMenuTeacher.add(jMenuItemManageTeacher);
+
+        jMenuBar1.add(jMenuTeacher);
+
         setJMenuBar(jMenuBar1);
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
@@ -214,6 +237,22 @@ public class mainForm extends javax.swing.JFrame {
             MCF.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
     }//GEN-LAST:event_jMenuItemCourseManageActionPerformed
 
+    private void jMenuItemAddTeacherActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItemAddTeacherActionPerformed
+            AddTeacherForm ATF = new AddTeacherForm();
+            ATF.setVisible(true);
+            ATF.pack();
+            ATF.setLocationRelativeTo(null);
+            ATF.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
+    }//GEN-LAST:event_jMenuItemAddTeacherActionPerformed
+
+    private void jMenuItemManageTeacherActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItemManageTeacherActionPerformed
+            ManageTeacherForm MTF = new ManageTeacherForm();
+            MTF.setVisible(true);
+            MTF.pack();
+            MTF.setLocationRelativeTo(null);
+            MTF.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
+    }//GEN-LAST:event_jMenuItemManageTeacherActionPerformed
+
     /**
      * @param args the command line arguments
      */
@@ -263,10 +302,13 @@ public class mainForm extends javax.swing.JFrame {
     private javax.swing.JMenuItem jMenuItemAdd;
     private javax.swing.JMenuItem jMenuItemAddCourse;
     private javax.swing.JMenuItem jMenuItemAddDep;
+    private javax.swing.JMenuItem jMenuItemAddTeacher;
     private javax.swing.JMenuItem jMenuItemCourseManage;
     private javax.swing.JMenuItem jMenuItemManDep;
+    private javax.swing.JMenuItem jMenuItemManageTeacher;
     private javax.swing.JMenuItem jMenuItemStuManage;
     private javax.swing.JMenu jMenuSt;
+    private javax.swing.JMenu jMenuTeacher;
     private javax.swing.JPanel jPanel1;
     // End of variables declaration//GEN-END:variables
 }

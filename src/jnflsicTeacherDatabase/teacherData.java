@@ -147,18 +147,19 @@ public class teacherData {
             
             ps.setString(7, t.getUserName());
             ps.setString(8, getMD5(String.valueOf(t.getPassword())));
-            ps.setString(9, t.getGraduateSchool());
-            ps.setString(10, t.getPosition());
-            ps.setString(11, t.getMajor());
-            ps.setInt(12, getDepartmentID(t.getDepartment()));
-            ps.setBoolean(13, t.isHasCertificate());
+            ps.setString(9, t.getDegree());
+            ps.setString(10, t.getGraduateSchool());
+            ps.setString(11, t.getPosition());
+            ps.setString(12, t.getMajor());
+            ps.setInt(13, getDepartmentID(t.getDepartment()));
+            ps.setBoolean(14, t.isHasCertificate());
             //phone = ?, sex = ?, Birthday = ?
-            ps.setString(14, t.getPhone());
-            ps.setString(15, String.valueOf(t.getSex()));
+            ps.setString(15, t.getPhone());
+            ps.setString(16, String.valueOf(t.getSex()));
             java.util.Date uDate = t.getBirthday().getTime();
             java.sql.Date sDate=new java.sql.Date(uDate.getTime());
-            ps.setDate(16, sDate);
-            
+            ps.setDate(17, sDate);
+            ps.setInt(18, t.getTeaID());
             System.out.println(ps);
             int rs = ps.executeUpdate();
             System.out.println(rs);
@@ -261,6 +262,9 @@ public class teacherData {
     }
     
     public static int getDepartmentID(String department) {
+        if(department.equals("ALL")){
+            return 0;
+        }
         try {
             //String firstName, String middleName, String lastName, char sex, int grade, Calendar birthday, int year, String phoneNum, String add
             String sql = "SELECT depID FROM ic_department where depName = '"+department+"';";

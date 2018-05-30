@@ -133,6 +133,9 @@ public class CourseData {
     }
     
     public static int getDepartID(String dName){
+        if(dName.equals("ALL")){
+            return 0;
+        }
         try {
             //String firstName, String middleName, String lastName, char sex, int grade, Calendar birthday, int year, String phoneNum, String add
             String sql = "SELECT depID FROM ic_department where depName = '"+dName+"';";

@@ -184,18 +184,25 @@
                                               </Group>
                                           </Group>
                                           <EmptySpace type="unrelated" max="-2" attributes="0"/>
-                                          <Group type="103" groupAlignment="0" attributes="0">
-                                              <Component id="jComboBoxPosSearch" alignment="0" min="-2" pref="166" max="-2" attributes="0"/>
-                                              <Component id="jComboBoxDepartmentSearch" alignment="0" min="-2" pref="166" max="-2" attributes="0"/>
-                                          </Group>
-                                          <EmptySpace min="-2" pref="51" max="-2" attributes="0"/>
-                                          <Group type="103" groupAlignment="0" attributes="0">
-                                              <Component id="jCheckBoxHasSearch" min="-2" max="-2" attributes="0"/>
-                                              <Component id="jCheckBoxValidSearch" min="-2" max="-2" attributes="0"/>
+                                          <Group type="103" groupAlignment="0" max="-2" attributes="0">
+                                              <Group type="102" attributes="0">
+                                                  <Component id="jComboBoxPosSearch" min="-2" pref="166" max="-2" attributes="0"/>
+                                                  <EmptySpace max="32767" attributes="0"/>
+                                                  <Component id="jLabel2" min="-2" max="-2" attributes="0"/>
+                                                  <EmptySpace type="unrelated" max="-2" attributes="0"/>
+                                                  <Component id="jComboBoxValid" min="-2" pref="86" max="-2" attributes="0"/>
+                                              </Group>
+                                              <Group type="102" attributes="0">
+                                                  <Component id="jComboBoxDepartmentSearch" min="-2" pref="166" max="-2" attributes="0"/>
+                                                  <EmptySpace type="separate" max="-2" attributes="0"/>
+                                                  <Component id="jLabel3" min="-2" max="-2" attributes="0"/>
+                                                  <EmptySpace type="unrelated" max="-2" attributes="0"/>
+                                                  <Component id="jComboBoxhas" min="-2" pref="86" max="-2" attributes="0"/>
+                                              </Group>
                                           </Group>
                                       </Group>
                                   </Group>
-                                  <EmptySpace min="-2" pref="52" max="-2" attributes="0"/>
+                                  <EmptySpace min="-2" pref="33" max="-2" attributes="0"/>
                                   <Component id="jButtonTeaSearch" min="-2" pref="77" max="-2" attributes="0"/>
                               </Group>
                           </Group>
@@ -236,10 +243,11 @@
                               <Component id="jLabelAddress8" alignment="3" min="-2" max="-2" attributes="0"/>
                               <Component id="jTextFieldDegreeSearch" alignment="3" min="-2" max="-2" attributes="0"/>
                               <Component id="jButtonTeaSearch" alignment="3" min="-2" pref="32" max="-2" attributes="0"/>
-                              <Component id="jCheckBoxHasSearch" alignment="3" min="-2" max="-2" attributes="0"/>
+                              <Component id="jLabel3" alignment="3" min="-2" max="-2" attributes="0"/>
+                              <Component id="jComboBoxhas" alignment="3" min="-2" max="-2" attributes="0"/>
                           </Group>
                       </Group>
-                      <Group type="102" attributes="0">
+                      <Group type="102" alignment="0" attributes="0">
                           <EmptySpace min="-2" pref="18" max="-2" attributes="0"/>
                           <Component id="jLabelStuID" min="-2" max="-2" attributes="0"/>
                           <EmptySpace min="-2" pref="2" max="-2" attributes="0"/>
@@ -247,7 +255,8 @@
                               <Group type="103" alignment="0" groupAlignment="3" attributes="0">
                                   <Component id="jLabelStuID3" alignment="3" min="-2" max="-2" attributes="0"/>
                                   <Component id="jComboBoxPosSearch" alignment="3" min="-2" max="-2" attributes="0"/>
-                                  <Component id="jCheckBoxValidSearch" alignment="3" min="-2" max="-2" attributes="0"/>
+                                  <Component id="jComboBoxValid" alignment="3" min="-2" max="-2" attributes="0"/>
+                                  <Component id="jLabel2" alignment="3" min="-2" max="-2" attributes="0"/>
                               </Group>
                               <Group type="103" groupAlignment="3" attributes="0">
                                   <Component id="jTextFieldKeyword" alignment="3" min="-2" max="-2" attributes="0"/>
@@ -970,13 +979,14 @@
               <Font name="Tahoma" size="11" style="1"/>
             </Property>
             <Property name="model" type="javax.swing.ComboBoxModel" editor="org.netbeans.modules.form.editors2.ComboBoxModelEditor">
-              <StringArray count="6">
-                <StringItem index="0" value="N/A"/>
-                <StringItem index="1" value="Math Teacher"/>
-                <StringItem index="2" value="Physical Teacher"/>
-                <StringItem index="3" value="Computer Science Teacher"/>
-                <StringItem index="4" value="Biology Teacher"/>
-                <StringItem index="5" value="English Teacher"/>
+              <StringArray count="7">
+                <StringItem index="0" value="ALL"/>
+                <StringItem index="1" value="N/A"/>
+                <StringItem index="2" value="Math Teacher"/>
+                <StringItem index="3" value="Physical Teacher"/>
+                <StringItem index="4" value="Computer Science Teacher"/>
+                <StringItem index="5" value="Biology Teacher"/>
+                <StringItem index="6" value="English Teacher"/>
               </StringArray>
             </Property>
           </Properties>
@@ -990,8 +1000,9 @@
               <Font name="Tahoma" size="11" style="1"/>
             </Property>
             <Property name="model" type="javax.swing.ComboBoxModel" editor="org.netbeans.modules.form.editors2.ComboBoxModelEditor">
-              <StringArray count="1">
-                <StringItem index="0" value="N/A"/>
+              <StringArray count="2">
+                <StringItem index="0" value="ALL"/>
+                <StringItem index="1" value="N/A"/>
               </StringArray>
             </Property>
           </Properties>
@@ -1025,17 +1036,45 @@
             <AuxValue name="JavaCodeGenerator_VariableModifier" type="java.lang.Integer" value="10"/>
           </AuxValues>
         </Component>
-        <Component class="javax.swing.JCheckBox" name="jCheckBoxHasSearch">
+        <Component class="javax.swing.JComboBox" name="jComboBoxValid">
           <Properties>
-            <Property name="text" type="java.lang.String" value="Has Teacher Certificate"/>
+            <Property name="model" type="javax.swing.ComboBoxModel" editor="org.netbeans.modules.form.editors2.ComboBoxModelEditor">
+              <StringArray count="3">
+                <StringItem index="0" value="ALL"/>
+                <StringItem index="1" value="Valid"/>
+                <StringItem index="2" value="Invalid"/>
+              </StringArray>
+            </Property>
           </Properties>
           <AuxValues>
             <AuxValue name="JavaCodeGenerator_VariableModifier" type="java.lang.Integer" value="10"/>
           </AuxValues>
         </Component>
-        <Component class="javax.swing.JCheckBox" name="jCheckBoxValidSearch">
+        <Component class="javax.swing.JLabel" name="jLabel2">
           <Properties>
-            <Property name="text" type="java.lang.String" value="Valid"/>
+            <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
+              <Font name="Tahoma" size="11" style="1"/>
+            </Property>
+            <Property name="text" type="java.lang.String" value="Valid:"/>
+          </Properties>
+        </Component>
+        <Component class="javax.swing.JLabel" name="jLabel3">
+          <Properties>
+            <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
+              <Font name="Tahoma" size="11" style="1"/>
+            </Property>
+            <Property name="text" type="java.lang.String" value="Has Certrificate:"/>
+          </Properties>
+        </Component>
+        <Component class="javax.swing.JComboBox" name="jComboBoxhas">
+          <Properties>
+            <Property name="model" type="javax.swing.ComboBoxModel" editor="org.netbeans.modules.form.editors2.ComboBoxModelEditor">
+              <StringArray count="3">
+                <StringItem index="0" value="ALL"/>
+                <StringItem index="1" value="Yes"/>
+                <StringItem index="2" value="NO"/>
+              </StringArray>
+            </Property>
           </Properties>
           <AuxValues>
             <AuxValue name="JavaCodeGenerator_VariableModifier" type="java.lang.Integer" value="10"/>

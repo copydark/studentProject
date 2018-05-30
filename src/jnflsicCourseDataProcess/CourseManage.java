@@ -25,19 +25,19 @@ public class CourseManage {
             String where="";
             if(!keyword.equals("")){
                 where = " where (courseName like '%"+keyword+"%')";
-                if(departmentID!=-1){
+                if(departmentID!=0){
                     where += " and courseDepartmentID="+departmentID;
                 }
-                if(!area.equals("N/A")){
+                if(!area.equals("ALL")){
                     where += " and courseArea = '"+area+"'";
                 }
-            }else if(departmentID!=-1){
+            }else if(departmentID!=0){
                 where = " where courseDepartmentID="+departmentID;
-                if(!area.equals("N/A")){
+                if(!area.equals("ALL")){
                     where += " and courseArea = '"+area+"'";
                 }
             }else{
-                if(!area.equals("N/A")){
+                if(!area.equals("ALL")){
                     where += " where courseArea = '"+area+"'";
                 }
             }

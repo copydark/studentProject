@@ -691,8 +691,9 @@
         <Component class="javax.swing.JComboBox" name="jComboBoxKeyDepart">
           <Properties>
             <Property name="model" type="javax.swing.ComboBoxModel" editor="org.netbeans.modules.form.editors2.ComboBoxModelEditor">
-              <StringArray count="1">
-                <StringItem index="0" value="N/A"/>
+              <StringArray count="2">
+                <StringItem index="0" value="ALL"/>
+                <StringItem index="1" value="N/A"/>
               </StringArray>
             </Property>
           </Properties>
@@ -703,14 +704,15 @@
         <Component class="javax.swing.JComboBox" name="jComboBoxKeyArea">
           <Properties>
             <Property name="model" type="javax.swing.ComboBoxModel" editor="org.netbeans.modules.form.editors2.ComboBoxModelEditor">
-              <StringArray count="7">
-                <StringItem index="0" value="N/A"/>
-                <StringItem index="1" value="Advanced Placement (AP)"/>
-                <StringItem index="2" value="Advanced Level (AL)"/>
-                <StringItem index="3" value="Advanced Subsidiary Level (AS)"/>
-                <StringItem index="4" value="National Course"/>
-                <StringItem index="5" value="Second Language"/>
-                <StringItem index="6" value="Others"/>
+              <StringArray count="8">
+                <StringItem index="0" value="ALL"/>
+                <StringItem index="1" value="N/A"/>
+                <StringItem index="2" value="Advanced Placement (AP)"/>
+                <StringItem index="3" value="Advanced Level (AL)"/>
+                <StringItem index="4" value="Advanced Subsidiary Level (AS)"/>
+                <StringItem index="5" value="National Course"/>
+                <StringItem index="6" value="Second Language"/>
+                <StringItem index="7" value="Others"/>
               </StringArray>
             </Property>
           </Properties>

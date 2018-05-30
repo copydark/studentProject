@@ -14,9 +14,9 @@ public class TeaTable {
         
     }
 //    (dtm2, key, pos, degree, depart, v, has, jTable1.getColumnCount(), tableNumOfRecords, tablePages);
-    public static void fillTeaJtable(DefaultTableModel model, String keyword, String pos, String deg, String dep, boolean v, boolean has, int col, int numOfRecordPrePage, int curPage){
+    public static void fillTeaJtable(DefaultTableModel model, String keyword, String pos, String deg, String dep, String v, String has, int col, int numOfRecordPrePage, int curPage){
         int departID = teacherData.getDepartmentID(dep);
-        Teacher t[] = teacherManage.getTeacher(keyword, pos, deg, departID, v,  has, numOfRecordPrePage, curPage);
+        Teacher t[] = teacherManage.getTeacher(keyword, pos, deg, departID, v, has, numOfRecordPrePage, curPage);
         //System.out.println("s0:"+s[0].getID());
         System.out.println("fill: "+model);
         if(t==null||t.length==0){

@@ -38,7 +38,7 @@ public class ManageTeacherForm extends javax.swing.JFrame {
         jRadioButtonMan.setSelected(true);
         int numCol = jTable1.getColumnCount();
         ////    (dtm2, key, pos, degree, depart, v, has, jTable1.getColumnCount(), tableNumOfRecords, tablePages);
-        TeaTable.fillTeaJtable((DefaultTableModel)jTable1.getModel(), "", "", "", "", false, false, numCol, tableNumOfRecords, tablePages);
+        TeaTable.fillTeaJtable((DefaultTableModel)jTable1.getModel(), "", "ALL", "", "ALL", "ALL", "ALL", numCol, tableNumOfRecords, tablePages);
         //fillT.fillStuJTable(jTable1,valueToSearch, year);
         jLabelTotalNumPag.setText("/"+TeaTable.totalPages());
         model = (DefaultTableModel)jTable1.getModel();
@@ -116,8 +116,10 @@ public class ManageTeacherForm extends javax.swing.JFrame {
         jLabelAddress7 = new javax.swing.JLabel();
         jLabelAddress8 = new javax.swing.JLabel();
         jTextFieldDegreeSearch = new javax.swing.JTextField();
-        jCheckBoxHasSearch = new javax.swing.JCheckBox();
-        jCheckBoxValidSearch = new javax.swing.JCheckBox();
+        jComboBoxValid = new javax.swing.JComboBox();
+        jLabel2 = new javax.swing.JLabel();
+        jLabel3 = new javax.swing.JLabel();
+        jComboBoxhas = new javax.swing.JComboBox();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -335,10 +337,10 @@ public class ManageTeacherForm extends javax.swing.JFrame {
         jLabelAddress6.setText("Repassword:");
 
         jComboBoxPosSearch.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
-        jComboBoxPosSearch.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "N/A", "Math Teacher", "Physical Teacher", "Computer Science Teacher", "Biology Teacher", "English Teacher" }));
+        jComboBoxPosSearch.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "ALL", "N/A", "Math Teacher", "Physical Teacher", "Computer Science Teacher", "Biology Teacher", "English Teacher" }));
 
         jComboBoxDepartmentSearch.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
-        jComboBoxDepartmentSearch.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "N/A" }));
+        jComboBoxDepartmentSearch.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "ALL", "N/A" }));
 
         jLabelAddress7.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
         jLabelAddress7.setText("Department:");
@@ -348,9 +350,15 @@ public class ManageTeacherForm extends javax.swing.JFrame {
 
         jTextFieldDegreeSearch.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
 
-        jCheckBoxHasSearch.setText("Has Teacher Certificate");
+        jComboBoxValid.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "ALL", "Valid", "Invalid" }));
 
-        jCheckBoxValidSearch.setText("Valid");
+        jLabel2.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
+        jLabel2.setText("Valid:");
+
+        jLabel3.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
+        jLabel3.setText("Has Certrificate:");
+
+        jComboBoxhas.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "ALL", "Yes", "NO" }));
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
@@ -471,14 +479,20 @@ public class ManageTeacherForm extends javax.swing.JFrame {
                                                 .addGap(30, 30, 30)
                                                 .addComponent(jLabelStuID3)))
                                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                            .addComponent(jComboBoxPosSearch, javax.swing.GroupLayout.PREFERRED_SIZE, 166, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                            .addComponent(jComboBoxDepartmentSearch, javax.swing.GroupLayout.PREFERRED_SIZE, 166, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                        .addGap(51, 51, 51)
-                                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                            .addComponent(jCheckBoxHasSearch)
-                                            .addComponent(jCheckBoxValidSearch))))
-                                .addGap(52, 52, 52)
+                                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                                            .addGroup(jPanel1Layout.createSequentialGroup()
+                                                .addComponent(jComboBoxPosSearch, javax.swing.GroupLayout.PREFERRED_SIZE, 166, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                                .addComponent(jLabel2)
+                                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                                .addComponent(jComboBoxValid, javax.swing.GroupLayout.PREFERRED_SIZE, 86, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                            .addGroup(jPanel1Layout.createSequentialGroup()
+                                                .addComponent(jComboBoxDepartmentSearch, javax.swing.GroupLayout.PREFERRED_SIZE, 166, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                                .addGap(18, 18, 18)
+                                                .addComponent(jLabel3)
+                                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                                .addComponent(jComboBoxhas, javax.swing.GroupLayout.PREFERRED_SIZE, 86, javax.swing.GroupLayout.PREFERRED_SIZE)))))
+                                .addGap(33, 33, 33)
                                 .addComponent(jButtonTeaSearch, javax.swing.GroupLayout.PREFERRED_SIZE, 77, javax.swing.GroupLayout.PREFERRED_SIZE)))
                         .addContainerGap(77, Short.MAX_VALUE))))
             .addGroup(jPanel1Layout.createSequentialGroup()
@@ -510,7 +524,8 @@ public class ManageTeacherForm extends javax.swing.JFrame {
                             .addComponent(jLabelAddress8)
                             .addComponent(jTextFieldDegreeSearch, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(jButtonTeaSearch, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jCheckBoxHasSearch)))
+                            .addComponent(jLabel3)
+                            .addComponent(jComboBoxhas, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addGap(18, 18, 18)
                         .addComponent(jLabelStuID)
@@ -519,7 +534,8 @@ public class ManageTeacherForm extends javax.swing.JFrame {
                             .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                                 .addComponent(jLabelStuID3)
                                 .addComponent(jComboBoxPosSearch, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addComponent(jCheckBoxValidSearch))
+                                .addComponent(jComboBoxValid, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addComponent(jLabel2))
                             .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                                 .addComponent(jTextFieldKeyword, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addComponent(jLabelStuID2)))))
@@ -780,16 +796,16 @@ public class ManageTeacherForm extends javax.swing.JFrame {
 //            }));
         String key = jTextFieldKeyword.getText();
         String pos = jComboBoxPosSearch.getSelectedItem().toString();
-        if(pos.equals("N/A")){
-            pos = "";
-        }
+//        if(pos.equals("N/A")){
+//            pos = "";
+//        }
         String degree = jTextFieldDegreeSearch.getText();
         String depart = jComboBoxDepartmentSearch.getSelectedItem().toString();
-        if(depart.equals("N/A")){
-            depart = "";
-        }
-        boolean v = jCheckBoxValidSearch.isSelected();
-        boolean has = jCheckBoxHasSearch.isSelected();
+//        if(depart.equals("N/A")){
+//            depart = "";
+//        }
+        String v = jComboBoxValid.getSelectedItem().toString();
+        String has = jComboBoxhas.getSelectedItem().toString();
         System.out.println("has:"+has);
         //System.out.println("reset"+jTable1);
         TeaTable.fillTeaJtable(dtm2, key, pos, degree, depart, v, has, jTable1.getColumnCount(), tableNumOfRecords, tablePages);
@@ -1011,14 +1027,16 @@ public class ManageTeacherForm extends javax.swing.JFrame {
     private javax.swing.JButton jButtonTeaRemove;
     private javax.swing.JButton jButtonTeaSearch;
     private static javax.swing.JCheckBox jCheckBoxHas;
-    private static javax.swing.JCheckBox jCheckBoxHasSearch;
     private static javax.swing.JCheckBox jCheckBoxValid;
-    private static javax.swing.JCheckBox jCheckBoxValidSearch;
     private static javax.swing.JComboBox jComboBoxDepartment;
     private static javax.swing.JComboBox jComboBoxDepartmentSearch;
     private static javax.swing.JComboBox jComboBoxPos;
     private static javax.swing.JComboBox jComboBoxPosSearch;
+    private static javax.swing.JComboBox jComboBoxValid;
+    private static javax.swing.JComboBox jComboBoxhas;
     private javax.swing.JLabel jLabel1;
+    private javax.swing.JLabel jLabel2;
+    private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabelAddress;
     private javax.swing.JLabel jLabelAddress1;
     private javax.swing.JLabel jLabelAddress2;

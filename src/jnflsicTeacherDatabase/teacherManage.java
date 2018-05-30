@@ -33,10 +33,10 @@ public class teacherManage {
 //        return (byte) "0123456789abcdef".indexOf(c);
 //    }
     
-    public static Teacher[] getTeacher(String keyword, String pos, String deg, int depID, boolean v, boolean has,  int numOfRecordPrePage, int curPage){
+    public static Teacher[] getTeacher(String keyword, String pos, String deg, int depID, String v, String has,  int numOfRecordPrePage, int curPage){
        p = new Pages(curPage, numOfRecordPrePage);
-       int vInt = v?1:0;
-       int hInt = has?1:0;
+//       int vInt = v?1:0;
+//       int hInt = has?1:0;
        
         try {
             //String firstName, String middleName, String lastName, char sex, int grade, Calendar birthday, int year, String phoneNum, String add
@@ -51,12 +51,12 @@ public class teacherManage {
             }
             
             if(gate==0){
-                if(!pos.equals("")){
+                if(!pos.equals("ALL")){
                     where += " where (position like '%"+pos+"%')";
                     gate++;
                 }
             }else{
-                if(!pos.equals("")){
+                if(!pos.equals("ALL")){
                     where += " AND (position like '%"+pos+"%')";
                 }
             }
@@ -73,26 +73,54 @@ public class teacherManage {
             }
             
             if(gate==0){
+                if(depID!=0){
                     where += " where (depID="+depID+")";
                     gate++;
+                }
             }else{
-                if(depID!=-1){
+                if(depID!=0){
                     where += " AND (depID="+depID+")";
                 }
             }
             
             if(gate==0){
+                System.out.println("v::::"+v);
+                System.out.println("v::::::"+!v.equals("ALL"));
+                if(!v.equals("ALL")){
+                    int vInt = 0;
+                    if(v.equals("Valid")){
+                        vInt = 1;
+                    }
                     where += " where (teaValid="+vInt+")";
                     gate++;
+                }
             }else{
+                if(!v.equals("ALL")){
+                    int vInt = 0;
+                    if(v.equals("Valid")){
+                        vInt = 1;
+                    }
                     where += " AND (teaValid="+vInt+")";
+                }
             }
             
             if(gate==0){
+                if(!has.equals("ALL")){
+                    int hInt = 0;
+                    if(has.equals("Yes")){
+                        hInt = 1;
+                    }
                     where += " where (teaCertificate="+hInt+")";
                     gate++;
+                }
             }else{
+                if(!has.equals("ALL")){
+                    int hInt = 0;
+                    if(has.equals("Yes")){
+                        hInt = 1;
+                    }
                     where += " AND (teaCertificate="+hInt+")";
+                }
             }
             
             setTotalPage(where);

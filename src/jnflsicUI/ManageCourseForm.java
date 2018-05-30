@@ -37,7 +37,7 @@ public class ManageCourseForm extends javax.swing.JFrame {
         setDepartmentList();
         
         int numCol = jTable1.getColumnCount();
-        CourseTable.fillCourseJtable((DefaultTableModel)jTable1.getModel(), "", -1, "N/A", numCol, tableNumOfRecords, tablePages);
+        CourseTable.fillCourseJtable((DefaultTableModel)jTable1.getModel(), "", 0, "ALL", numCol, tableNumOfRecords, tablePages);
         //fillT.fillStuJTable(jTable1,valueToSearch, year);
         jLabelTotalNumPag.setText("/"+CourseTable.totalPages());
         model = (DefaultTableModel)jTable1.getModel();
@@ -276,9 +276,9 @@ public class ManageCourseForm extends javax.swing.JFrame {
         jLabelLeader1.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
         jLabelLeader1.setText("Course Area: ");
 
-        jComboBoxKeyDepart.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "N/A" }));
+        jComboBoxKeyDepart.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "ALL", "N/A" }));
 
-        jComboBoxKeyArea.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "N/A", "Advanced Placement (AP)", "Advanced Level (AL)", "Advanced Subsidiary Level (AS)", "National Course", "Second Language", "Others" }));
+        jComboBoxKeyArea.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "ALL", "N/A", "Advanced Placement (AP)", "Advanced Level (AL)", "Advanced Subsidiary Level (AS)", "National Course", "Second Language", "Others" }));
 
         jLabelPhone2.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
         jLabelPhone2.setText("Teacher:");
@@ -570,9 +570,10 @@ public class ManageCourseForm extends javax.swing.JFrame {
                 "CourseID", "Course Name", "Active", "Credit", "Area", "Department Name", "Prerequirement", "Description", "Teacher Name"
             });
         String key = jTextFieldKeyword.getText();
-        String department = jComboBoxKeyDepart.getModel().getSelectedItem().toString();
+        String department = jComboBoxKeyDepart.getSelectedItem().toString();
         int departmentID = CourseData.getDepartID(department);
-        String courseArea = jComboBoxKeyArea.getModel().getSelectedItem().toString();
+        //System.out.println("department: "+department);
+        String courseArea = jComboBoxKeyArea.getSelectedItem().toString();
 
         CourseTable.fillCourseJtable(dtm2, key, departmentID, courseArea, jTable1.getColumnCount(), tableNumOfRecords, tablePages);
         jLabelTotalNumPag.setText("/"+CourseTable.totalPages());

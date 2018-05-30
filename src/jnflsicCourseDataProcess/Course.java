@@ -2,7 +2,7 @@
 package jnflsicCourseDataProcess;
 
 import jnflsicCourseDatabase.CourseData;
-
+//lrfjls
 public class Course {
     private int courseID;
     private String courseName;   

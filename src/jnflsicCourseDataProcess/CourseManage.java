@@ -20,7 +20,7 @@ public class CourseManage {
        
         try {
             //String firstName, String middleName, String lastName, char sex, int grade, Calendar birthday, int year, String phoneNum, String add
-            String sql = "Select courseID, courseName, courseDescription, courseActive, courseValue, coursePreReq, courseDepartmentID, courseArea FROM jnflsic_sch_info.ic_course";
+            String sql = "Select courseID, courseName, courseDescription, courseActive, courseValue, coursePreReq, courseDepartmentID, courseArea, teacherID FROM jnflsic_sch_info.ic_course";
 
             String where="";
             if(!keyword.equals("")){
@@ -77,7 +77,7 @@ public class CourseManage {
                 c[i].setPreReq(rs.getString(6));
                 c[i].setDepartmentID(rs.getInt(7));
                 c[i].setArea(rs.getString(8));
-                
+                c[i].setTeacherID(rs.getInt(9));
                 i++;
             }  
             ps.close();

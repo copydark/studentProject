@@ -13,12 +13,26 @@ public class Course {
     private String area;
     private String department;
     private int departmentID;
+    private int teacherID;
+    private String teacherName;
+
+    public String getTeacherName() {
+        System.out.println("teacherName:"+teacherName);
+        return teacherName;
+    }
+
+    public void setTeacherName(String teacherName) {
+        this.teacherName = teacherName;
+        if(teacherID <=0){
+            teacherID = CourseData.getTeaIDByName(teacherName);
+        }
+    }
     
     public Course(){
         
     }
     
-    public Course(String Name, String pReq, String des, boolean act, int c, String a, String depart){
+    public Course(String Name, String pReq, String des, boolean act, int c, String a, String depart, String tea){
         courseName = Name;
         preReq = pReq;
         description = des;
@@ -27,6 +41,30 @@ public class Course {
         area = a;
         department = depart;
         departmentID = CourseData.getDepartID(depart);
+        teacherID = CourseData.getTeaIDByName(tea);
+    }
+
+    public String getDepartment() {
+        return department;
+    }
+
+    public void setDepartment(String department) {
+        this.department = department;
+    }
+
+    public int getTeacherID() {
+        return teacherID;
+    }
+
+    public void setTeacherID(int teacherID) {
+        this.teacherID = teacherID;
+        if(teacherID == -1){
+            teacherName = "N/A";
+        }
+        if(teacherName==null || teacherName.equals("")){
+            teacherName = CourseData.getTeacherName(teacherID);
+        }
+        System.out.println("teacherName"+teacherName);
     }
     
     public int getCourseID(){

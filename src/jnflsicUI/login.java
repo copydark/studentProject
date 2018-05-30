@@ -14,7 +14,7 @@ import jnflsicDatabase.loginData;
  * @author shen
  */
 public class login extends javax.swing.JFrame {
-
+    private int unsec=0;
     /**
      * Creates new form login
      */
@@ -196,7 +196,23 @@ public class login extends javax.swing.JFrame {
             this.dispose();
             //TeacherInfo.main(new String[]{});
         }else{
-            jLabelNotice.setText("Username and password does not match");
+            if(unsec%3==2)
+            {
+                
+                try {
+                        Thread.sleep(1000*unsec);
+                    } catch (InterruptedException e) {
+                    
+                        }
+                unsec+=1;
+            }                
+           
+            else{
+                unsec+=1;
+            
+            
+            }
+            jLabelNotice.setText("already wrong "+unsec+" times");
         }
     }//GEN-LAST:event_jButtonLoginActionPerformed
 
@@ -249,6 +265,8 @@ public class login extends javax.swing.JFrame {
         double width = Toolkit.getDefaultToolkit().getScreenSize().getWidth();
         double height = Toolkit.getDefaultToolkit().getScreenSize().getHeight();
         this.setLocation( (int) (width - this.getWidth()) / 2,(int) (height - this.getHeight()) / 2);
+        this.setAlwaysOnTop(true);
+        this.setResizable(false);
     }
     
     // Variables declaration - do not modify//GEN-BEGIN:variables

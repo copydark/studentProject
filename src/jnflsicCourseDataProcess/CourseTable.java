@@ -36,7 +36,9 @@ public class CourseTable {
             row[5] = c[i].getDepartmentName();
             row[6] = c[i].getPReq();
             row[7] = c[i].getDescription();
-            System.out.println(c[i].getDescription());
+            System.out.println(c[i].getTeacherName());
+            row[8] = c[i].getTeacherName();
+            //System.out.println(c[i].getTeacherName());
                 
             //}
             model.addRow(row);

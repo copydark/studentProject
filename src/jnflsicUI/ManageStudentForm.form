@@ -91,7 +91,7 @@
                           <Group type="103" groupAlignment="0" attributes="0">
                               <Component id="jTextFieldPhone" max="32767" attributes="0"/>
                               <Component id="jTextFieldYear" max="32767" attributes="0"/>
-                              <Component id="dateChooserCombo" pref="320" max="32767" attributes="0"/>
+                              <Component id="dateChooserCombo" max="32767" attributes="0"/>
                               <Group type="102" attributes="0">
                                   <Component id="jComboBoxGrade" min="-2" pref="53" max="-2" attributes="0"/>
                                   <EmptySpace min="0" pref="0" max="32767" attributes="0"/>
@@ -656,7 +656,7 @@
             <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
               <Font name="Tahoma" size="11" style="1"/>
             </Property>
-            <Property name="text" type="java.lang.String" value="Keyword:"/>
+            <Property name="text" type="java.lang.String" value="Name/Student Number:"/>
           </Properties>
         </Component>
         <Component class="javax.swing.JLabel" name="jLabelStuID3">
@@ -664,7 +664,7 @@
             <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
               <Font name="Tahoma" size="11" style="1"/>
             </Property>
-            <Property name="text" type="java.lang.String" value="Enrolled Year: "/>
+            <Property name="text" type="java.lang.String" value="Enroll Year/Grade: "/>
           </Properties>
         </Component>
         <Component class="javax.swing.JButton" name="jButtonStuSearch">

@@ -240,10 +240,10 @@ public class ManageStudentForm extends javax.swing.JFrame {
         jTextFieldEnrollY.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
 
         jLabelStuID2.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
-        jLabelStuID2.setText("Keyword:");
+        jLabelStuID2.setText("Name/Student Number:");
 
         jLabelStuID3.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
-        jLabelStuID3.setText("Enrolled Year: ");
+        jLabelStuID3.setText("Enroll Year/Grade: ");
 
         jButtonStuSearch.setText("Search");
         jButtonStuSearch.addActionListener(new java.awt.event.ActionListener() {
@@ -339,7 +339,7 @@ public class ManageStudentForm extends javax.swing.JFrame {
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(jTextFieldPhone)
                             .addComponent(jTextFieldYear)
-                            .addComponent(dateChooserCombo, javax.swing.GroupLayout.DEFAULT_SIZE, 320, Short.MAX_VALUE)
+                            .addComponent(dateChooserCombo, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                             .addGroup(jPanel1Layout.createSequentialGroup()
                                 .addComponent(jComboBoxGrade, javax.swing.GroupLayout.PREFERRED_SIZE, 53, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addGap(0, 0, Short.MAX_VALUE))))

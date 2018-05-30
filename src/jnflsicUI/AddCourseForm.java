@@ -54,6 +54,8 @@ public class AddCourseForm extends javax.swing.JFrame {
         jComboBoxArea = new javax.swing.JComboBox();
         jCheckBoxCourseActive = new javax.swing.JCheckBox();
         jComboBoxCredit = new javax.swing.JComboBox();
+        jLabelPhone4 = new javax.swing.JLabel();
+        jComboBoxTeacher = new javax.swing.JComboBox();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
 
@@ -117,12 +119,28 @@ public class AddCourseForm extends javax.swing.JFrame {
         jLabelPhone3.setText("Course Department:");
 
         jComboBoxDepartment.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "N/A" }));
+        jComboBoxDepartment.addItemListener(new java.awt.event.ItemListener() {
+            public void itemStateChanged(java.awt.event.ItemEvent evt) {
+                jComboBoxDepartmentItemStateChanged(evt);
+            }
+        });
+        jComboBoxDepartment.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jComboBoxDepartmentActionPerformed(evt);
+            }
+        });
 
         jComboBoxArea.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "N/A", "Advanced Placement (AP)", "Advanced Level (AL)", "Advanced Subsidiary Level (AS)", "National Course", "Second Language", "Others" }));
 
         jCheckBoxCourseActive.setText("Active");
 
         jComboBoxCredit.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "1", "2", "3", "4", "5", "6", "7", "8", "9", "10" }));
+
+        jLabelPhone4.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
+        jLabelPhone4.setText("Teacher:");
+
+        jComboBoxTeacher.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "N/A", "1" }));
+        jComboBoxTeacher.setEnabled(false);
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
@@ -143,7 +161,8 @@ public class AddCourseForm extends javax.swing.JFrame {
                             .addComponent(jLabelLastName2)
                             .addComponent(jLabelPhone1)
                             .addComponent(jLabelPhone2)
-                            .addComponent(jLabelPhone3))
+                            .addComponent(jLabelPhone3)
+                            .addComponent(jLabelPhone4))
                         .addGap(18, 18, 18)
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(jTextFieldCourseName)
@@ -154,7 +173,8 @@ public class AddCourseForm extends javax.swing.JFrame {
                             .addGroup(jPanel1Layout.createSequentialGroup()
                                 .addComponent(jCheckBoxCourseActive)
                                 .addGap(0, 0, Short.MAX_VALUE))
-                            .addComponent(jComboBoxCredit, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
+                            .addComponent(jComboBoxCredit, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(jComboBoxTeacher, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addComponent(jButtonAddCourse, javax.swing.GroupLayout.PREFERRED_SIZE, 85, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -188,11 +208,15 @@ public class AddCourseForm extends javax.swing.JFrame {
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabelPhone2)
                     .addComponent(jComboBoxArea, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 16, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabelPhone3)
                     .addComponent(jComboBoxDepartment, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(18, 18, 18)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabelPhone4)
+                    .addComponent(jComboBoxTeacher, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(9, 9, 9)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabelLastName2)
                     .addComponent(jTextFieldPrerequirement, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
@@ -200,7 +224,7 @@ public class AddCourseForm extends javax.swing.JFrame {
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jScrollPanelAddress, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabelLastName1))
-                .addGap(18, 18, 18)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jButtonCourseCancel, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jButtonResetCourse, javax.swing.GroupLayout.PREFERRED_SIZE, 31, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -256,21 +280,27 @@ public class AddCourseForm extends javax.swing.JFrame {
         boolean active = jCheckBoxCourseActive.isSelected();
         int credit = jComboBoxCredit.getSelectedIndex()+1;
         String area = jComboBoxArea.getModel().getSelectedItem().toString();      
-        String department = jComboBoxDepartment.getModel().getSelectedItem().toString();
-        
+        String department = jComboBoxDepartment.getSelectedItem().toString();
+        String teacher = jComboBoxTeacher.getSelectedItem().toString();
+        int teacherID = -1;
         int departmentID = -1;
 
         if(!verify()){
             return;
         }
         //String Name, String pReq, String des, boolean act, String c, String a, String depart
-        Course cos = new Course(courseName, Prerequirement, description, active, credit, area, department);
+        Course cos = new Course(courseName, Prerequirement, description, active, credit, area, department,teacher);
         
         if(!department.equals("N/A")){
             departmentID = cos.getDepartmentID();
         }
         
         cos.setDepartmentID(departmentID);
+        
+        if(!teacher.equals("N/A")){
+            teacherID = cos.getTeacherID();
+        }
+        cos.setTeacherID(teacherID);
         
         if(Course.operateData('i', cos)){
             if(ManageCourseForm.tableExist()){
@@ -279,6 +309,28 @@ public class AddCourseForm extends javax.swing.JFrame {
             clear();
         }
     }//GEN-LAST:event_jButtonAddCourseActionPerformed
+
+    private void jComboBoxDepartmentItemStateChanged(java.awt.event.ItemEvent evt) {//GEN-FIRST:event_jComboBoxDepartmentItemStateChanged
+//        if(!jComboBoxDepartment.getSelectedItem().toString().equals("N/A")){
+//            jComboBoxTeacher.setEnabled(true);
+//            setTeacherList();
+//        }else{
+//            jComboBoxTeacher.setEnabled(false);
+//            jComboBoxTeacher.setSelectedIndex(0);
+//        }
+    }//GEN-LAST:event_jComboBoxDepartmentItemStateChanged
+
+    private void jComboBoxDepartmentActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jComboBoxDepartmentActionPerformed
+        if(!jComboBoxDepartment.getSelectedItem().toString().equals("N/A")){
+            jComboBoxTeacher.setEnabled(true);
+            setTeacherList();
+        }else{
+            jComboBoxTeacher.setEnabled(false);
+            jComboBoxTeacher.setSelectedIndex(0);
+            jComboBoxTeacher.removeAllItems();
+            jComboBoxTeacher.addItem("N/A");
+        }
+    }//GEN-LAST:event_jComboBoxDepartmentActionPerformed
 
     /**
      * @param args the command line arguments
@@ -338,6 +390,17 @@ public class AddCourseForm extends javax.swing.JFrame {
         });
     }
     
+    private void setTeacherList(){
+        jComboBoxTeacher.removeAllItems();
+        jComboBoxTeacher.addItem("N/A");
+        if(!jComboBoxDepartment.getSelectedItem().toString().equals("N/A")){
+            String[] teaList = CourseData.teacherList(jComboBoxDepartment.getSelectedItem().toString());
+            for(int i = 0; i<teaList.length; i++){
+                jComboBoxTeacher.addItem(teaList[i]);
+            }
+        }
+    }
+    
     private void setDepartmentList(){
         String[] departmentList = CourseData.getDepartmentList();
         for(int i = 0; i<departmentList.length; i++){
@@ -359,6 +422,7 @@ public class AddCourseForm extends javax.swing.JFrame {
     private javax.swing.JComboBox jComboBoxArea;
     private javax.swing.JComboBox jComboBoxCredit;
     private javax.swing.JComboBox jComboBoxDepartment;
+    private javax.swing.JComboBox jComboBoxTeacher;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabelFirstName;
@@ -368,6 +432,7 @@ public class AddCourseForm extends javax.swing.JFrame {
     private javax.swing.JLabel jLabelPhone1;
     private javax.swing.JLabel jLabelPhone2;
     private javax.swing.JLabel jLabelPhone3;
+    private javax.swing.JLabel jLabelPhone4;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JScrollPane jScrollPanelAddress;
     private javax.swing.JTextArea jTextDepDescription;

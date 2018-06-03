@@ -919,55 +919,57 @@ public class ManageTeacherForm extends javax.swing.JFrame {
     }//GEN-LAST:event_jTable1MouseClicked
 
     private void jTable1KeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jTable1KeyReleased
-        if(evt.getKeyCode()==KeyEvent.VK_UP || evt.getKeyCode()==KeyEvent.VK_DOWN){
-            rowIndex = jTable1.getSelectedRow();
-            //System.out.println("select"+jTable1);
-           // model = (DefaultTableModel)jTable1.getModel();
-            jTextFieldTeaID.setText(model.getValueAt(rowIndex, 0).toString());
-            //System.out.println(model.getValueAt(rowIndex, 0).toString());
-    //        System.out.println(model.getValueAt(rowIndex, 0).toString());
-            //System.out.println("model "+model.toString());
-            jTextFieldFirstName.setText(model.getValueAt(rowIndex, 1).toString());
-            jTextFieldMiddleName.setText(model.getValueAt(rowIndex, 2).toString());
-            jTextFieldLastName.setText(model.getValueAt(rowIndex, 3).toString());
-            if(model.getValueAt(rowIndex, 4).toString().equals("m")){
-                jRadioButtonMan.setSelected(true);
-            }else{
-                jRadioButtonfelmale.setSelected(false);
-            }
-
-            String g = model.getValueAt(rowIndex, 5).toString();
-            jComboBoxPos.setSelectedItem(g);
-            //System.out.println(model.getValueAt(rowIndex, 6));
-            String d = model.getValueAt(rowIndex, 6).toString();
-            SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
-            try {
-                Date date = sdf.parse(d);
-                Calendar calendar = Calendar.getInstance();
-                calendar.setTime(date);
-                dateChooserCombo.setSelectedDate(calendar);
-            } catch (ParseException ex) {
-                Logger.getLogger(ManageTeacherForm.class.getName()).log(Level.SEVERE, null, ex);
-            }
-
-            jComboBoxDepartment.setSelectedItem(model.getValueAt(rowIndex, 7).toString());
-            jTextFieldPhone.setText(model.getValueAt(rowIndex, 8).toString());
-            jCheckBoxValid.setSelected(false);
-            if(model.getValueAt(rowIndex, 9).toString().equals("Working")){
-                jCheckBoxValid.setSelected(true);
-            }
-            jCheckBoxHas.setSelected(false);
-            if(model.getValueAt(rowIndex, 10).toString().equals("Has Certificate")){
-                jCheckBoxValid.setSelected(true);
-            }
-
-            jTextFieldGradu.setText(model.getValueAt(rowIndex, 11).toString());
-            jTextFieldDegree.setText(model.getValueAt(rowIndex, 12).toString());
-            jTextFieldMajor.setText(model.getValueAt(rowIndex, 13).toString());
-            jTextFieldUsername.setText(model.getValueAt(rowIndex, 14).toString());
-            jPasswordField1.setText(model.getValueAt(rowIndex, 15).toString());
-            jPasswordField2.setText(model.getValueAt(rowIndex, 15).toString());
+        rowIndex = jTable1.getSelectedRow();
+        //System.out.println("select"+jTable1);
+       // model = (DefaultTableModel)jTable1.getModel();
+        jTextFieldTeaID.setText(model.getValueAt(rowIndex, 0).toString());
+        //System.out.println(model.getValueAt(rowIndex, 0).toString());
+//        System.out.println(model.getValueAt(rowIndex, 0).toString());
+        //System.out.println("model "+model.toString());
+        jTextFieldFirstName.setText(model.getValueAt(rowIndex, 1).toString());
+        jTextFieldMiddleName.setText(model.getValueAt(rowIndex, 2).toString());
+        jTextFieldLastName.setText(model.getValueAt(rowIndex, 3).toString());
+        if(model.getValueAt(rowIndex, 4).toString().equals("m")){
+            jRadioButtonMan.setSelected(true);
+        }else{
+            jRadioButtonfelmale.setSelected(false);
         }
+        
+        String g = model.getValueAt(rowIndex, 5).toString();
+        jComboBoxPos.setSelectedItem(g);
+        //System.out.println(model.getValueAt(rowIndex, 6));
+        String d = model.getValueAt(rowIndex, 6).toString();
+        SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
+        try {
+            Date date = sdf.parse(d);
+            Calendar calendar = Calendar.getInstance();
+            calendar.setTime(date);
+            dateChooserCombo.setSelectedDate(calendar);
+        } catch (ParseException ex) {
+            Logger.getLogger(ManageTeacherForm.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        Object o = model.getValueAt(rowIndex, 7);
+        //String dep = .toString();
+        if(o == null){
+            o = "N/A";
+        }
+        jComboBoxDepartment.setSelectedItem(o.toString());
+        jTextFieldPhone.setText(model.getValueAt(rowIndex, 8).toString());
+        jCheckBoxValid.setSelected(false);
+        if(model.getValueAt(rowIndex, 9).toString().equals("Working")){
+            jCheckBoxValid.setSelected(true);
+        }
+        jCheckBoxHas.setSelected(false);
+        if(model.getValueAt(rowIndex, 10).toString().equals("Has Certificate")){
+            jCheckBoxValid.setSelected(true);
+        }
+        
+        jTextFieldGradu.setText(model.getValueAt(rowIndex, 11).toString());
+        jTextFieldDegree.setText(model.getValueAt(rowIndex, 12).toString());
+        jTextFieldMajor.setText(model.getValueAt(rowIndex, 13).toString());
+        jTextFieldUsername.setText(model.getValueAt(rowIndex, 14).toString());
+        jPasswordField1.setText(model.getValueAt(rowIndex, 15).toString());
+        jPasswordField2.setText(model.getValueAt(rowIndex, 15).toString());
     }//GEN-LAST:event_jTable1KeyReleased
 
     /**

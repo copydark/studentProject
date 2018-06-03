@@ -35,6 +35,6 @@ public class Pages {
         System.out.println("num"+ numRecordsPrePages);
         System.out.println("total%"+total%numRecordsPrePages);
         totalPages  = total%numRecordsPrePages>0?(total/numRecordsPrePages+1):(total/numRecordsPrePages);
-        //System.out.println(totalPages);
+        System.out.println(totalPages);
     }
 }

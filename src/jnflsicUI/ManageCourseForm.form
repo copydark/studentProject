@@ -84,6 +84,7 @@
                                               <Component id="jLabelLastName3" alignment="1" min="-2" max="-2" attributes="0"/>
                                               <Component id="jLabelPhone" alignment="1" min="-2" max="-2" attributes="0"/>
                                               <Component id="jLabelPhone2" alignment="1" min="-2" max="-2" attributes="0"/>
+                                              <Component id="jLabelPhone3" alignment="1" min="-2" max="-2" attributes="0"/>
                                           </Group>
                                           <Group type="103" alignment="1" groupAlignment="0" attributes="0">
                                               <Component id="jLabelLastName1" min="-2" max="-2" attributes="0"/>
@@ -93,14 +94,22 @@
                                               </Group>
                                           </Group>
                                       </Group>
-                                      <EmptySpace type="separate" max="-2" attributes="0"/>
-                                      <Group type="103" groupAlignment="0" max="-2" attributes="0">
-                                          <Component id="jTextFieldCourseName" max="32767" attributes="0"/>
-                                          <Component id="jTextFieldCourseID" max="32767" attributes="0"/>
-                                          <Component id="jCheckBoxCourseActive" min="-2" max="-2" attributes="0"/>
-                                          <Component id="jComboBoxArea" max="32767" attributes="0"/>
-                                          <Component id="jComboBoxDepartment" alignment="0" min="-2" pref="272" max="-2" attributes="0"/>
-                                          <Component id="jComboBoxTeacher" min="-2" pref="272" max="-2" attributes="0"/>
+                                      <Group type="103" groupAlignment="0" attributes="0">
+                                          <Group type="102" attributes="0">
+                                              <EmptySpace type="separate" max="-2" attributes="0"/>
+                                              <Group type="103" groupAlignment="0" max="-2" attributes="0">
+                                                  <Component id="jTextFieldCourseName" max="32767" attributes="0"/>
+                                                  <Component id="jTextFieldCourseID" max="32767" attributes="0"/>
+                                                  <Component id="jCheckBoxCourseActive" min="-2" max="-2" attributes="0"/>
+                                                  <Component id="jComboBoxArea" max="32767" attributes="0"/>
+                                                  <Component id="jComboBoxDepartment" alignment="0" min="-2" pref="272" max="-2" attributes="0"/>
+                                                  <Component id="jComboBoxTeacher" min="-2" pref="272" max="-2" attributes="0"/>
+                                              </Group>
+                                          </Group>
+                                          <Group type="102" attributes="0">
+                                              <EmptySpace min="-2" pref="11" max="-2" attributes="0"/>
+                                              <Component id="jTextFieldMaxStu" min="-2" pref="279" max="-2" attributes="0"/>
+                                          </Group>
                                       </Group>
                                   </Group>
                               </Group>
@@ -197,7 +206,7 @@
                               <Component id="jTextFieldCourseID" alignment="3" min="-2" max="-2" attributes="0"/>
                               <Component id="jLabelDepID" alignment="3" min="-2" max="-2" attributes="0"/>
                           </Group>
-                          <EmptySpace pref="8" max="32767" attributes="0"/>
+                          <EmptySpace pref="7" max="32767" attributes="0"/>
                           <Group type="103" groupAlignment="3" attributes="0">
                               <Component id="jTextFieldCourseName" alignment="3" min="-2" max="-2" attributes="0"/>
                               <Component id="jLabelFirstName" alignment="3" min="-2" max="-2" attributes="0"/>
@@ -227,7 +236,12 @@
                               <Component id="jLabelPhone2" min="-2" max="-2" attributes="0"/>
                               <Component id="jComboBoxTeacher" min="-2" max="-2" attributes="0"/>
                           </Group>
-                          <EmptySpace min="-2" pref="40" max="-2" attributes="0"/>
+                          <EmptySpace min="-2" pref="9" max="-2" attributes="0"/>
+                          <Group type="103" groupAlignment="3" attributes="0">
+                              <Component id="jLabelPhone3" alignment="3" min="-2" max="-2" attributes="0"/>
+                              <Component id="jTextFieldMaxStu" alignment="3" min="-2" max="-2" attributes="0"/>
+                          </Group>
+                          <EmptySpace type="unrelated" max="-2" attributes="0"/>
                           <Group type="103" groupAlignment="3" attributes="0">
                               <Component id="jTextFieldPrerequirement" alignment="3" min="-2" max="-2" attributes="0"/>
                               <Component id="jLabelPhone1" alignment="3" min="-2" max="-2" attributes="0"/>
@@ -258,7 +272,7 @@
                           <Component id="jButtonCosRemove" alignment="3" min="-2" pref="32" max="-2" attributes="0"/>
                       </Group>
                   </Group>
-                  <EmptySpace pref="39" max="32767" attributes="0"/>
+                  <EmptySpace pref="37" max="32767" attributes="0"/>
               </Group>
           </Group>
         </DimensionLayout>
@@ -388,7 +402,7 @@
             <Component class="javax.swing.JTable" name="jTable1">
               <Properties>
                 <Property name="model" type="javax.swing.table.TableModel" editor="org.netbeans.modules.form.editors2.TableModelEditor">
-                  <Table columnCount="9" rowCount="0">
+                  <Table columnCount="10" rowCount="0">
                     <Column editable="false" title="CourseID" type="java.lang.Integer"/>
                     <Column editable="false" title="Course Name" type="java.lang.String"/>
                     <Column editable="false" title="Active" type="java.lang.String"/>
@@ -398,10 +412,16 @@
                     <Column editable="true" title="Prerequirement" type="java.lang.String"/>
                     <Column editable="true" title="Description" type="java.lang.String"/>
                     <Column editable="true" title="Teacher Name" type="java.lang.String"/>
+                    <Column editable="true" title="Max Student" type="java.lang.Integer"/>
                   </Table>
                 </Property>
                 <Property name="columnModel" type="javax.swing.table.TableColumnModel" editor="org.netbeans.modules.form.editors2.TableColumnModelEditor">
                   <TableColumnModel selectionModel="0">
+                    <Column maxWidth="-1" minWidth="-1" prefWidth="-1" resizable="true">
+                      <Title/>
+                      <Editor/>
+                      <Renderer/>
+                    </Column>
                     <Column maxWidth="-1" minWidth="-1" prefWidth="-1" resizable="true">
                       <Title/>
                       <Editor/>
@@ -738,6 +758,27 @@
             </Property>
             <Property name="enabled" type="boolean" value="false"/>
           </Properties>
+          <AuxValues>
+            <AuxValue name="JavaCodeGenerator_VariableModifier" type="java.lang.Integer" value="10"/>
+          </AuxValues>
+        </Component>
+        <Component class="javax.swing.JLabel" name="jLabelPhone3">
+          <Properties>
+            <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
+              <Font name="Tahoma" size="11" style="1"/>
+            </Property>
+            <Property name="text" type="java.lang.String" value="Max Number Of Student:"/>
+          </Properties>
+        </Component>
+        <Component class="javax.swing.JTextField" name="jTextFieldMaxStu">
+          <Properties>
+            <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
+              <Font name="Tahoma" size="14" style="1"/>
+            </Property>
+          </Properties>
+          <Events>
+            <EventHandler event="keyTyped" listener="java.awt.event.KeyListener" parameters="java.awt.event.KeyEvent" handler="jTextFieldMaxStuKeyTyped"/>
+          </Events>
           <AuxValues>
             <AuxValue name="JavaCodeGenerator_VariableModifier" type="java.lang.Integer" value="10"/>
           </AuxValues>

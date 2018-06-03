@@ -38,6 +38,7 @@ public class CourseTable {
             row[7] = c[i].getDescription();
             System.out.println(c[i].getTeacherName());
             row[8] = c[i].getTeacherName();
+            row[9] = c[i].getMaxStudent();
             //System.out.println(c[i].getTeacherName());
                 
             //}

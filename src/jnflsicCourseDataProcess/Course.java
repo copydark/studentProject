@@ -15,7 +15,8 @@ public class Course {
     private int departmentID;
     private int teacherID;
     private String teacherName;
-
+    private int maxStudent;
+    
     public String getTeacherName() {
         System.out.println("teacherName:"+teacherName);
         return teacherName;
@@ -31,8 +32,16 @@ public class Course {
     public Course(){
         
     }
+
+    public int getMaxStudent() {
+        return maxStudent;
+    }
+
+    public void setMaxStudent(int maxStudent) {
+        this.maxStudent = maxStudent;
+    }
     
-    public Course(String Name, String pReq, String des, boolean act, int c, String a, String depart, String tea){
+    public Course(String Name, String pReq, String des, boolean act, int c, String a, String depart, String tea, int maxStu){
         courseName = Name;
         preReq = pReq;
         description = des;
@@ -42,6 +51,8 @@ public class Course {
         department = depart;
         departmentID = CourseData.getDepartID(depart);
         teacherID = CourseData.getTeaIDByName(tea);
+        maxStudent = maxStu;
+        System.out.println(maxStudent);
     }
 
     public String getDepartment() {
@@ -60,6 +71,7 @@ public class Course {
         this.teacherID = teacherID;
         if(teacherID == -1){
             teacherName = "N/A";
+            return;
         }
         if(teacherName==null || teacherName.equals("")){
             teacherName = CourseData.getTeacherName(teacherID);
@@ -132,7 +144,7 @@ public class Course {
     }
     
     public void setDepartmentID(int d){
-        //System.out.println(department);
+        System.out.println("departmentID:  "+d);
         if(department==null||department.equals("")){
             department = CourseData.getDepartName(d);
             
@@ -141,7 +153,7 @@ public class Course {
     }
     
     public void setDepartmentName(String dep){
-        if(departmentID <= 0){
+        if(departmentID >= 0){
             departmentID = CourseData.getDepartID(dep);
         }
         department = dep;

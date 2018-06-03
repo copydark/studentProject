@@ -20,7 +20,7 @@ public class CourseManage {
        
         try {
             //String firstName, String middleName, String lastName, char sex, int grade, Calendar birthday, int year, String phoneNum, String add
-            String sql = "Select courseID, courseName, courseDescription, courseActive, courseValue, coursePreReq, courseDepartmentID, courseArea, teacherID FROM jnflsic_sch_info.ic_course";
+            String sql = "Select courseID, courseName, courseDescription, courseActive, courseValue, coursePreReq, courseDepartmentID, courseArea, teacherID, max_Students FROM jnflsic_sch_info.ic_course";
 
             String where="";
             if(!keyword.equals("")){
@@ -43,12 +43,13 @@ public class CourseManage {
             }
             setTotalPage(where);
             String limit = " limit " + p.getFirstNumOfRecords() +","+p.getNumRecordsPrePages();
-            
+
             Connection con = connectDatabase.getConnection();
             PreparedStatement ps;
 //            System.out.println(sql);
             sql+=where+limit;
             ps = con.prepareStatement(sql);
+            //System.out.println(ps);
             System.out.println(ps);
             ResultSet rs = ps.executeQuery();
             rs.last();
@@ -78,6 +79,7 @@ public class CourseManage {
                 c[i].setDepartmentID(rs.getInt(7));
                 c[i].setArea(rs.getString(8));
                 c[i].setTeacherID(rs.getInt(9));
+                c[i].setMaxStudent(rs.getInt(10));
                 i++;
             }  
             ps.close();

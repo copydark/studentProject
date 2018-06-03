@@ -4,10 +4,16 @@ package jnflsicDatabase;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.swing.JOptionPane;
+import jnflsicCourseDataProcess.CourseManage;
+import jnflsicDataProcess.Pages;
 import jnflsicDataProcess.Student;
 
 public class studentData {
+    
+    private static Pages p;
     
     private static boolean checkHash(int hash){
         try {
@@ -160,5 +166,184 @@ public class studentData {
             System.err.println(e);
         }
         return false;
+    }
+    
+    private static void setTotalPage(int courseID, String where){
+        String countSQL = "select count(ic_student.stuID), ic_class.studentID from ic_student left join ic_class on ic_student.stuID = ic_class.studentID and ic_class.courseID = "+courseID+" where ic_class.studentID is NULL";
+        try {
+            int row = connectDatabase.numberOfRow(countSQL+where);
+            System.out.println("pppppppp"+row);
+            p.setTotalPages(row);
+        } catch (Exception ex) {
+            Logger.getLogger(CourseManage.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }
+
+    private static int getCourseID(String courseInfo){
+        //"CourseID: "+rs.getString(1)+" Course Name: "+rs.getString(2)
+        return Integer.parseInt(courseInfo.substring(courseInfo.indexOf(" ")+1, courseInfo.indexOf(" Course Name:")));
+        
+    }
+    
+    private static int[] getStudentID(String studentName){
+        if(studentName.equals("")||studentName==null){
+            return null;
+        }
+        
+        int stuID[];
+        try {
+            //String firstName, String middleName, String lastName, char sex, int grade, Calendar birthday, int year, String phoneNum, String add
+            //String name[] = tName.split(" ");
+            //teaFirName, teaMiddle, teaSurName
+            String sql = "SELECT stuID FROM ic_student where first_name like '%"+studentName+"%' or middle_name like '%"+studentName+"%' or last_name like '%"+studentName+"%'";
+            Connection con = connectDatabase.getConnection();
+            PreparedStatement ps;
+            
+            ps = con.prepareStatement(sql);
+            
+            System.out.println(ps);
+            ResultSet rs = ps.executeQuery();
+            //int rs = ps.executeUpdate();
+            rs.last();
+            int row = rs.getRow();
+            rs.beforeFirst();
+            stuID = new int[row];
+            
+            int i = 0;
+            
+            while(rs.next()) {
+//                JOptionPane.showMessageDialog(null, "New Course Added");
+                stuID[i] = rs.getInt(1);
+                i++;
+            }
+
+            ps.close();
+            con.close();
+            return stuID;
+        } catch (Exception e) {
+            System.err.println("ClassData.studentData error" + e);
+        }
+        return null;
+    }
+    
+    public static String[] getStudentList(String name, int grade, String courseInfo, int curPage, int numOfRecordPrePage){
+        String stuList[];
+        p = new Pages(curPage, numOfRecordPrePage);
+        int[] stuID = getStudentID(name);
+        int courseID = getCourseID(courseInfo);
+        String stuIDGroup = "";
+//        if(stuID==null){
+//            return null;
+//        }
+        if(stuID!=null){
+            for(int i = 0; i<stuID.length; i++){
+                stuIDGroup += stuID[i]+",";
+            }
+             //delete the last ,
+            stuIDGroup= stuIDGroup.substring(0, stuIDGroup.length()-1);
+        }
+
+        //select ic_student.stuID, ic_student.first_name, ic_student.middle_name, ic_student.last_name, ic_student.grade, ic_class.studentID from ic_student left join ic_class on ic_student.stuID = ic_class.studentID and ic_class.courseID=102 where ic_class.studentID is NULL and ic_student.grade = 10 and ic_student.stuID = 198688928
+        String sql = "select ic_student.stuID, ic_student.first_name, ic_student.middle_name, ic_student.last_name, ic_student.grade, ic_class.studentID from ic_student left join ic_class on ic_student.stuID = ic_class.studentID and ic_class.courseID = ? where ic_class.studentID is NULL";
+        String where = "";
+//        System.out.println("grade:"+grade);
+        if(grade!=0){
+            grade = grade+9;
+            where += " and ic_student.grade = "+grade; 
+            if(stuID!=null && stuID.length>0){
+                where += " and find_in_set(ic_student.stuID, '"+stuIDGroup+"')";
+            }
+        }else{
+            if(stuID!=null && stuID.length>0){
+                where += " and find_in_set(ic_student.stuID, '"+stuIDGroup+"')";
+            }
+        }
+        
+        String limit = " limit "+p.getFirstNumOfRecords()+", "+p.getNumRecordsPrePages();
+        setTotalPage(courseID, where);
+        if(p.getTotalPages()==0){
+            limit = " limit "+0+", "+p.getNumRecordsPrePages();
+        }
+        sql+=where+limit;
+        try{
+            Connection con = connectDatabase.getConnection();
+            PreparedStatement ps;
+            
+            ps = con.prepareStatement(sql);
+            ps.setInt(1, courseID);
+            System.out.println(ps);
+            
+            ResultSet rs = ps.executeQuery();
+            //int rs = ps.executeUpdate();
+            rs.last();
+            int row = rs.getRow();
+            rs.beforeFirst();
+            stuList = new String[row];
+            int i = 0;
+            while(rs.next()){
+                stuList[i] = "StudentID: "+rs.getString(1)+","+"Student Name: "+rs.getString(2)+" "+rs.getString(3)+" "+rs.getString(4)+", Grade: "+rs.getString(5);
+                System.out.println("list"+stuList[i]);
+                i++;
+            }
+
+            ps.close();
+            con.close();
+            return stuList;
+        }catch(Exception e){
+            System.err.println("studentData.getStudentList ERROR: "+ e);
+        }
+        return null;
+//        p = new Pages(curPage, numOfRecordPrePage);
+//        try {
+//            String sql = "Select stuID, first_name, middle_name, last_name, grade from jnflsic_sch_info.ic_student";
+//            
+//            if(grade!=0){
+//                grade = grade+9;
+//            }
+//            System.out.println(grade);
+//            String where ="";
+//            if(!name.equals("")){
+//                where="where first_name like '%"+name+"%' or middel_name like '%"+name+"%' or last_name like '%"+name+"%'";
+//                if(grade>=10){
+//                    where =" and grade="+ grade;
+//                }
+//            }else{
+//                if(grade>=10){
+//                    where=" where grade="+ grade;
+//                }
+//            }
+//            
+//            setTotalPage(where);
+//            
+//            sql += where +" limit "+ p.getFirstNumOfRecords() +","+p.getNumRecordsPrePages();
+//            Connection con = connectDatabase.getConnection();
+//            PreparedStatement ps = con.prepareStatement(sql);
+//            System.out.println(ps);
+//            ResultSet rs = ps.executeQuery();      
+//            System.out.println(ps);
+//            rs.last();
+//            int row = rs.getRow();
+//            rs.beforeFirst();
+//            String nameData[] = new String[row];
+//            int i = 0;
+//            while(rs.next()){
+//                nameData[i]= "StudentID: "+rs.getInt(1)+" Name: "+rs.getString(2)+" "+rs.getString(3)+" "+rs.getString(4)+ " Grade:"+ rs.getInt(5);
+//                i++;
+//            }   
+//            ps.close();
+//            con.close();
+//            return nameData;
+//        }  catch (Exception e) {
+//            System.out.println(e);
+//        }
+//        return null;
+    }
+    
+    public static int getTotalPages() {
+        return p.getTotalPages();
+    }
+    
+    public static Pages getP(){
+        return p;
     }
 }

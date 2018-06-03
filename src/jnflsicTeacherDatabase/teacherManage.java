@@ -84,8 +84,6 @@ public class teacherManage {
             }
             
             if(gate==0){
-                System.out.println("v::::"+v);
-                System.out.println("v::::::"+!v.equals("ALL"));
                 if(!v.equals("ALL")){
                     int vInt = 0;
                     if(v.equals("Valid")){

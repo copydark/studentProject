@@ -99,6 +99,8 @@ public class ManageCourseForm extends javax.swing.JFrame {
         jComboBoxKeyArea = new javax.swing.JComboBox();
         jLabelPhone2 = new javax.swing.JLabel();
         jComboBoxTeacher = new javax.swing.JComboBox();
+        jLabelPhone3 = new javax.swing.JLabel();
+        jTextFieldMaxStu = new javax.swing.JTextField();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -153,14 +155,14 @@ public class ManageCourseForm extends javax.swing.JFrame {
 
             },
             new String [] {
-                "CourseID", "Course Name", "Active", "Credit", "Area", "Department Name", "Prerequirement", "Description", "Teacher Name"
+                "CourseID", "Course Name", "Active", "Credit", "Area", "Department Name", "Prerequirement", "Description", "Teacher Name", "Max Student"
             }
         ) {
             Class[] types = new Class [] {
-                java.lang.Integer.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class
+                java.lang.Integer.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.Integer.class
             };
             boolean[] canEdit = new boolean [] {
-                false, false, false, false, true, true, true, true, true
+                false, false, false, false, true, true, true, true, true, true
             };
 
             public Class getColumnClass(int columnIndex) {
@@ -287,6 +289,16 @@ public class ManageCourseForm extends javax.swing.JFrame {
         jComboBoxTeacher.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "N/A" }));
         jComboBoxTeacher.setEnabled(false);
 
+        jLabelPhone3.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
+        jLabelPhone3.setText("Max Number Of Student:");
+
+        jTextFieldMaxStu.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
+        jTextFieldMaxStu.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                jTextFieldMaxStuKeyTyped(evt);
+            }
+        });
+
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
@@ -326,20 +338,26 @@ public class ManageCourseForm extends javax.swing.JFrame {
                                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                             .addComponent(jLabelLastName3, javax.swing.GroupLayout.Alignment.TRAILING)
                                             .addComponent(jLabelPhone, javax.swing.GroupLayout.Alignment.TRAILING)
-                                            .addComponent(jLabelPhone2, javax.swing.GroupLayout.Alignment.TRAILING))
+                                            .addComponent(jLabelPhone2, javax.swing.GroupLayout.Alignment.TRAILING)
+                                            .addComponent(jLabelPhone3, javax.swing.GroupLayout.Alignment.TRAILING))
                                         .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                             .addComponent(jLabelLastName1)
                                             .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                                                 .addComponent(jLabelDepID)
                                                 .addComponent(jLabelFirstName))))
-                                    .addGap(18, 18, 18)
-                                    .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                                        .addComponent(jTextFieldCourseName)
-                                        .addComponent(jTextFieldCourseID)
-                                        .addComponent(jCheckBoxCourseActive)
-                                        .addComponent(jComboBoxArea, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                        .addComponent(jComboBoxDepartment, javax.swing.GroupLayout.PREFERRED_SIZE, 272, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                        .addComponent(jComboBoxTeacher, javax.swing.GroupLayout.PREFERRED_SIZE, 272, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                                    .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                        .addGroup(jPanel1Layout.createSequentialGroup()
+                                            .addGap(18, 18, 18)
+                                            .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                                                .addComponent(jTextFieldCourseName)
+                                                .addComponent(jTextFieldCourseID)
+                                                .addComponent(jCheckBoxCourseActive)
+                                                .addComponent(jComboBoxArea, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                                .addComponent(jComboBoxDepartment, javax.swing.GroupLayout.PREFERRED_SIZE, 272, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                                .addComponent(jComboBoxTeacher, javax.swing.GroupLayout.PREFERRED_SIZE, 272, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                                        .addGroup(jPanel1Layout.createSequentialGroup()
+                                            .addGap(11, 11, 11)
+                                            .addComponent(jTextFieldMaxStu, javax.swing.GroupLayout.PREFERRED_SIZE, 279, javax.swing.GroupLayout.PREFERRED_SIZE)))))
                             .addComponent(jTextFieldPrerequirement, javax.swing.GroupLayout.PREFERRED_SIZE, 279, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addGap(35, 35, 35)))
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -415,7 +433,7 @@ public class ManageCourseForm extends javax.swing.JFrame {
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(jTextFieldCourseID, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(jLabelDepID))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 8, Short.MAX_VALUE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 7, Short.MAX_VALUE)
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(jTextFieldCourseName, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(jLabelFirstName))
@@ -439,7 +457,11 @@ public class ManageCourseForm extends javax.swing.JFrame {
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(jLabelPhone2)
                             .addComponent(jComboBoxTeacher, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addGap(40, 40, 40)
+                        .addGap(9, 9, 9)
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(jLabelPhone3)
+                            .addComponent(jTextFieldMaxStu, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(jTextFieldPrerequirement, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(jLabelPhone1))
@@ -463,7 +485,7 @@ public class ManageCourseForm extends javax.swing.JFrame {
                         .addComponent(jButtonCourseAdd, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addComponent(jButtonManageCourse, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addComponent(jButtonCosRemove, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addContainerGap(39, Short.MAX_VALUE))
+                .addContainerGap(37, Short.MAX_VALUE))
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
@@ -490,6 +512,7 @@ public class ManageCourseForm extends javax.swing.JFrame {
         jTextFieldPrerequirement.setText("");
         jTexCourseDescription.setText("");
         jComboBoxTeacher.setSelectedIndex(0);
+        jTextFieldMaxStu.setText("");
     }
     
     private void jButtonCourseAddActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonCourseAddActionPerformed
@@ -520,13 +543,18 @@ public class ManageCourseForm extends javax.swing.JFrame {
         String area = jComboBoxArea.getModel().getSelectedItem().toString();      
         String department = jComboBoxDepartment.getSelectedItem().toString();
         String teaName = jComboBoxTeacher.getSelectedItem().toString();
+        String strMaxStudent = jTextFieldMaxStu.getText();
+        int maxStudent = 0;
+        if(!(strMaxStudent.equals(""))&&(strMaxStudent!=null)){
+            maxStudent = Integer.parseInt(strMaxStudent);
+        }
         int departmentID = -1;
         int teaID = -1;
         if(!verify()){
             return;
         }
         //String Name, String pReq, String des, boolean act, String c, String a, String depart
-        Course cos = new Course(courseName, Prerequirement, description, active, credit, area, department, teaName);
+        Course cos = new Course(courseName, Prerequirement, description, active, credit, area, department, teaName, maxStudent);
         cos.setCourseID(courseID);
         if(!department.equals("N/A")){
             departmentID = cos.getDepartmentID();
@@ -567,7 +595,7 @@ public class ManageCourseForm extends javax.swing.JFrame {
         tableNumOfRecords = Integer.parseInt(jTextFieldRecord.getText());
         DefaultTableModel dtm2 = (DefaultTableModel)jTable1.getModel();
         dtm2.setDataVector(null, new String [] {
-                "CourseID", "Course Name", "Active", "Credit", "Area", "Department Name", "Prerequirement", "Description", "Teacher Name"
+                "CourseID", "Course Name", "Active", "Credit", "Area", "Department Name", "Prerequirement", "Description", "Teacher Name", "Max Student"
             });
         String key = jTextFieldKeyword.getText();
         String department = jComboBoxKeyDepart.getSelectedItem().toString();
@@ -600,7 +628,7 @@ public class ManageCourseForm extends javax.swing.JFrame {
     }//GEN-LAST:event_jButtonManageFristActionPerformed
 
     private void jButtonManagePreActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonManagePreActionPerformed
-        int n = Integer.parseInt(jTextFieldPage.getText())-1;
+        int n = Integer.parseInt(jTextFieldPage.getText());
         if(n==0){
             n = 1;
         }
@@ -675,12 +703,11 @@ public class ManageCourseForm extends javax.swing.JFrame {
             sName = "N/A";
         }
         jComboBoxTeacher.setSelectedItem(sName);
-        
+        jTextFieldMaxStu.setText(model.getValueAt(rowIndex, 9).toString());
     }//GEN-LAST:event_jTable1MouseClicked
 
     private void jTable1KeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jTable1KeyReleased
         if(evt.getKeyCode()==KeyEvent.VK_UP || evt.getKeyCode()==KeyEvent.VK_DOWN){
-            rowIndex = jTable1.getSelectedRow();
             rowIndex = jTable1.getSelectedRow();
             jTextFieldCourseID.setText(model.getValueAt(rowIndex, 0).toString());
             jTextFieldCourseName.setText(model.getValueAt(rowIndex, 1).toString());
@@ -718,6 +745,12 @@ public class ManageCourseForm extends javax.swing.JFrame {
             jComboBoxTeacher.addItem("N/A");
         }
     }//GEN-LAST:event_jComboBoxDepartmentActionPerformed
+
+    private void jTextFieldMaxStuKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jTextFieldMaxStuKeyTyped
+        if(!Character.isDigit(evt.getKeyChar())){
+            evt.consume();
+        }
+    }//GEN-LAST:event_jTextFieldMaxStuKeyTyped
     
     private void setTeacherList(){
         jComboBoxTeacher.removeAllItems();
@@ -807,6 +840,7 @@ public class ManageCourseForm extends javax.swing.JFrame {
     private javax.swing.JLabel jLabelPhone;
     private javax.swing.JLabel jLabelPhone1;
     private javax.swing.JLabel jLabelPhone2;
+    private javax.swing.JLabel jLabelPhone3;
     private javax.swing.JLabel jLabelStuID;
     private javax.swing.JLabel jLabelStuID2;
     private static javax.swing.JLabel jLabelTotalNumPag;
@@ -820,6 +854,7 @@ public class ManageCourseForm extends javax.swing.JFrame {
     private static javax.swing.JTextField jTextFieldCourseID;
     private static javax.swing.JTextField jTextFieldCourseName;
     private static javax.swing.JTextField jTextFieldKeyword;
+    private static javax.swing.JTextField jTextFieldMaxStu;
     private static javax.swing.JTextField jTextFieldPage;
     private static javax.swing.JTextField jTextFieldPrerequirement;
     public static javax.swing.JTextField jTextFieldRecord;

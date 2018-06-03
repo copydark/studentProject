@@ -55,8 +55,10 @@ public class connectDatabase {
         try {
             Connection db = getConnection();
             PreparedStatement pst = db.prepareStatement(sql);
+
             ResultSet rset = pst.executeQuery();
             row = (rset.next())?(rset.getInt(1)):0;
+            System.out.println("numberOFpage: page"+ row+"::::"+pst);
             pst.close();
             db.close();
             //return columnCount;

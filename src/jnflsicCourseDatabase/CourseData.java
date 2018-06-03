@@ -6,6 +6,7 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import javax.swing.JOptionPane;
+import jnflsicClassDatabase.ClassData;
 import jnflsicCourseDataProcess.Course;
 
 public class CourseData {
@@ -45,7 +46,7 @@ public class CourseData {
     public static boolean insertData(Course c) {
         try {
             //String firstName, String middleName, String lastName, char sex, int grade, Calendar birthday, int year, String phoneNum, String add
-            String sql = "INSERT INTO jnflsic_sch_info.ic_course (courseID, courseName, courseDescription, courseActive, courseValue, coursePreReq, courseDepartmentID, courseArea, teacherID) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?);";
+            String sql = "INSERT INTO jnflsic_sch_info.ic_course (courseID, courseName, courseDescription, courseActive, courseValue, coursePreReq, courseDepartmentID, courseArea, teacherID, max_Students) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?);";
             Connection con = connectDatabase.getConnection();
             PreparedStatement ps;
             
@@ -61,6 +62,7 @@ public class CourseData {
             ps.setString(7, c.getDepartmentID()+"");
             ps.setString(8, c.getArea());
             ps.setInt(9, c.getTeacherID());
+            ps.setInt(10, c.getMaxStudent());
             System.out.println(ps);
             int rs = ps.executeUpdate();
             if (rs>0) {
@@ -229,7 +231,7 @@ public class CourseData {
     public static boolean updateData(Course c){
         try {
             //String firstName, String middleName, String lastName, char sex, int grade, Calendar birthday, int year, String phoneNum, String add
-            String sql = "UPDATE jnflsic_sch_info.ic_course SET courseID = ?, courseName = ?, courseDescription = ?, courseActive = ?, courseValue = ?, coursePreReq = ?, courseDepartmentID = ?, courseArea = ?, teacherID = ? WHERE courseID = ?;";
+            String sql = "UPDATE jnflsic_sch_info.ic_course SET courseID = ?, courseName = ?, courseDescription = ?, courseActive = ?, courseValue = ?, coursePreReq = ?, courseDepartmentID = ?, courseArea = ?, teacherID = ? , max_Students = ? WHERE courseID = ?;";
             //String sql = "UPDATE jnflsic_sch_info.ic_department SET depID = ?, depName = ?, depPhone = ?, depDescription = ?, depLeader = ? WHERE depID = ?;";
             
             Connection con = connectDatabase.getConnection();
@@ -247,6 +249,7 @@ public class CourseData {
             ps.setString(8,c.getArea());
             ps.setInt(9,c.getCourseID());
             ps.setInt(10, c.getTeacherID());
+            ps.setInt(11, c.getMaxStudent());
             System.out.println(ps);
             int rs = ps.executeUpdate();
             System.out.println(rs);
@@ -323,6 +326,9 @@ public class CourseData {
     }
     
     public static int getTeaIDByName(String tName){
+        if(tName.equals("")||tName==null||tName.equals("N/A")){
+            return -1;
+        }
         try {
             //String firstName, String middleName, String lastName, char sex, int grade, Calendar birthday, int year, String phoneNum, String add
             String name[] = tName.split(" ");
@@ -350,5 +356,49 @@ public class CourseData {
             System.err.println(e);
         }
         return -1;
+    }
+    
+    public static String[] getCourseList(int departmentID, String area){
+        try {
+            //String firstName, String middleName, String lastName, char sex, int grade, Calendar birthday, int year, String phoneNum, String add
+            //String name[] = tName.split(" ");
+            //teaFirName, teaMiddle, teaSurName
+            String course[];
+            String sql = "SELECT courseID, courseName,max_Students FROM ic_course where courseDepartmentID = '"+departmentID+"'";
+            if(!area.equals("N/A")){
+                sql+=" and courseArea = '"+area+"'";
+            }
+            Connection con = connectDatabase.getConnection();
+            PreparedStatement ps;
+            
+            ps = con.prepareStatement(sql);
+            
+            System.out.println(ps);
+            ResultSet rs = ps.executeQuery();
+            //int rs = ps.executeUpdate();
+            rs.last();
+            int row = rs.getRow();
+            rs.beforeFirst();
+            course = new String[row];
+            
+            int i = 0;
+            
+            while(rs.next()) {
+//                JOptionPane.showMessageDialog(null, "New Course Added");
+                int courseID = rs.getInt(1);
+
+                int maxStu = rs.getInt(3);
+                int available = maxStu - ClassData.getNumStuInClass(courseID);
+                course[i] = "CourseID: "+courseID+" Course Name: "+rs.getString(2)+" Available: "+available;
+                i++;
+            }
+
+            ps.close();
+            con.close();
+            return course;
+        } catch (Exception e) {
+            System.err.println(e);
+        }
+        return null;
     }
 }

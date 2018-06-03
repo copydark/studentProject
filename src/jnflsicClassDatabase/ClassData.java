@@ -135,6 +135,10 @@ public class ClassData {
         return p.getTotalPages();
     }
     
+    public static Pages getP(){
+        return p;
+    }
+    
     public static Student[] getStudentList(String courseInfo, int curPage, int numOfRecordPrePage){
         Student stuList[];
         p = new Pages(curPage, numOfRecordPrePage);
@@ -146,6 +150,7 @@ public class ClassData {
         
         String limit = " limit "+p.getFirstNumOfRecords()+", "+p.getNumRecordsPrePages();
         setTotalPage(courseID, where);
+
         sql+=where+limit;
         try{
             Connection con = connectDatabase.getConnection();

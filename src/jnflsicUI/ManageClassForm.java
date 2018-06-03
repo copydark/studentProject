@@ -5,6 +5,7 @@
  */
 package jnflsicUI;
 
+import java.awt.Color;
 import java.util.Date;
 import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
@@ -29,6 +30,10 @@ public class ManageClassForm extends javax.swing.JFrame {
     public ManageClassForm() {
         initComponents();
         setDepartmentList();
+        jTable1.setRowHeight(40);
+        jTable1.setShowGrid(true);
+        jTable1.setGridColor(Color.GRAY);
+        jTable1.setSelectionBackground(Color.black);
     }
     //select ic_student.stuID, ic_student.first_name, ic_student.middle_name, ic_student.last_name, ic_student.grade, ic_class.studentID from ic_student left join ic_class on ic_student.stuID = ic_class.studentID and ic_class.courseID=102 where ic_class.studentID is NULL
     private void setDepartmentList(){
@@ -303,9 +308,19 @@ public class ManageClassForm extends javax.swing.JFrame {
 
         jButtonTablePre.setText("Pre");
         jButtonTablePre.setEnabled(false);
+        jButtonTablePre.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButtonTablePreActionPerformed(evt);
+            }
+        });
 
         jButtonTableNext.setText("Next");
         jButtonTableNext.setEnabled(false);
+        jButtonTableNext.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButtonTableNextActionPerformed(evt);
+            }
+        });
 
         jLabelClassTablePage.setText("1");
 
@@ -415,7 +430,7 @@ public class ManageClassForm extends javax.swing.JFrame {
         String couresName = jListCourse.getSelectedValue().toString();
         jLabelSelectedCourse.setText(couresName);
         setStudent(0);
-        resetTable();
+        resetTable(0);
     }//GEN-LAST:event_jListCourseValueChanged
     
 
@@ -438,7 +453,7 @@ public class ManageClassForm extends javax.swing.JFrame {
             String studentInfo = jListStudent.getSelectedValue().toString();
             ClassData.AddRecored(studentInfo,courseInfo);
             //resetTable
-            resetTable();
+            resetTable(0);
             setStudent(0);
         }
     }//GEN-LAST:event_jListStudentMouseClicked
@@ -454,35 +469,59 @@ public class ManageClassForm extends javax.swing.JFrame {
             int studentID = Integer.parseInt(jTable1.getValueAt(rowIndex, 0).toString());
             ClassData.RemoveRecored(studentID,courseInfo);
             //resetTable
-            resetTable();
+            resetTable(0);
             setStudent(0);
         }
     }//GEN-LAST:event_jTable1MouseClicked
+
+    private void jButtonTablePreActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonTablePreActionPerformed
+        resetTable(-1);
+    }//GEN-LAST:event_jButtonTablePreActionPerformed
+
+    private void jButtonTableNextActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonTableNextActionPerformed
+        resetTable(1);
+    }//GEN-LAST:event_jButtonTableNextActionPerformed
     
-    private void resetTable(){
+    private void resetTable(int state){
         DefaultTableModel dtm2 = (DefaultTableModel)jTable1.getModel();
         dtm2.setDataVector(null, new String [] {
                 "StudentID", "Student Name", "Grade"
             });
         System.out.println(jLabelClassTablePage.getText());
-        int curPage = Integer.parseInt(jLabelClassTablePage.getText());
+        int curPage = Integer.parseInt(jLabelClassTablePage.getText())+state;
+        if(curPage<=0){
+            curPage = 1;
+        }else if(ClassData.getP()!=null && curPage>ClassTable.totalPages()){
+            curPage = ClassTable.totalPages();
+
+        }
+        jLabelClassTablePage.setText(curPage+"");
         System.out.println(curPage);
         int numCol = jTable1.getColumnCount();
-        ClassTable.fillClassJtable(dtm2, jLabelSelectedCourse.getText(), numCol, curPage, 20);
+        ClassTable.fillClassJtable(dtm2, jLabelSelectedCourse.getText(), numCol, curPage, 10);
+        if(dtm2.getRowCount()>0){
+            jButtonTablePre.setEnabled(true);
+            jButtonTableNext.setEnabled(true);
+        }else{
+            jButtonTablePre.setEnabled(false);
+            jButtonTableNext.setEnabled(false);
+        }
     }
+    
     
     private void setStudent(int state){
         int start = Integer.parseInt(labelpages.getText())+state;
-        
+        System.out.println("starttttttt:     "+start);
         if(start <= 0){
             start = 1;
         }else if(studentData.getP()!=null){
             //System.out.println("ManageClassForm.setStudent totalpage"+studentData.getTotalPages());
-            if(start>studentData.getTotalPages())
+            //System.out.println(start>studentData.getTotalPages()&&start>=0);
+            if(start>studentData.getTotalPages()){
                 start = studentData.getTotalPages();
-        }else{
-            
+            }
         }
+        
         labelpages.setText(start+"");
         jListStudent.removeAll();
         String name = jTextFieldStuName.getText();
@@ -557,7 +596,7 @@ public class ManageClassForm extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel5;
     private javax.swing.JLabel jLabel6;
     private javax.swing.JLabel jLabel7;
-    private javax.swing.JLabel jLabelClassTablePage;
+    public static javax.swing.JLabel jLabelClassTablePage;
     private javax.swing.JLabel jLabelSelectedCourse;
     private javax.swing.JList jListCourse;
     private javax.swing.JList jListStudent;

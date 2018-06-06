@@ -7,6 +7,7 @@ import java.sql.ResultSet;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.JOptionPane;
+import jnflsicCourseDataProcess.Course;
 import jnflsicCourseDataProcess.CourseManage;
 import jnflsicDataProcess.Pages;
 import jnflsicDataProcess.Student;
@@ -151,7 +152,7 @@ public class ClassData {
         String limit = " limit "+p.getFirstNumOfRecords()+", "+p.getNumRecordsPrePages();
         setTotalPage(courseID, where);
 
-        sql+=where+limit;
+        sql+=where;
         try{
             Connection con = connectDatabase.getConnection();
             PreparedStatement ps;
@@ -269,7 +270,35 @@ public class ClassData {
             }
             return false;
     }
+    
+    public static boolean RemoveRecored(int studentID, int courseID){
+        try{
+            String sql = "DELETE FROM jnflsic_sch_info.ic_class WHERE ic_class.studentID = ? and ic_class.courseID = ?";
+            Connection con = connectDatabase.getConnection();
+            PreparedStatement ps;
+            System.out.println(sql);
+            ps = con.prepareStatement(sql);
 
+            ps.setInt(1, studentID);
+            ps.setInt(2, courseID);
+            System.out.println("delete"+ps);
+            int rs = ps.executeUpdate();
+            System.out.println(rs);
+            if (rs>0) {
+                JOptionPane.showMessageDialog(null, "Student studentID:"+studentID+" remove from course: "+courseID);
+                ps.close();
+                con.close();
+                return true;
+            }
+
+            ps.close();
+            con.close();
+        } catch (Exception e) {
+            System.err.println(e);
+        }
+        return false;
+    }
+    
     public static boolean RemoveRecored(int studentID, String courseInfo) {
         int courseID = getCourseID(courseInfo);
         try {
@@ -299,5 +328,41 @@ public class ClassData {
             System.err.println(e);
         }
         return false;
+    }
+
+    public static Course[] getCourseList(String studentInfo) {
+        int studentID = Integer.parseInt(studentInfo.substring(studentInfo.indexOf(" ")+1,studentInfo.indexOf(",")));
+        //select ic_course.courseID, ic_course.courseName, ic_course.courseDepartmentID from ic_course where ic_course.courseID = any (select ic_class.courseID from ic_student left join ic_class on ic_student.stuID = ic_class.studentID and ic_student.stuID = 17011924 where ic_class.studentID is Not NULL)
+        String sql = "select ic_course.courseID, ic_course.courseName, ic_course.courseDepartmentID from ic_course where ic_course.courseID = any (select ic_class.courseID from ic_student left join ic_class on ic_student.stuID = ic_class.studentID and ic_student.stuID = "+studentID+" where ic_class.studentID is Not NULL)";
+        try{
+            Connection con = connectDatabase.getConnection();
+            PreparedStatement ps;
+            
+            ps = con.prepareStatement(sql);
+            
+            System.out.println(ps);
+            
+            ResultSet rs = ps.executeQuery();
+            //int rs = ps.executeUpdate();
+            rs.last();
+            int row = rs.getRow();
+            rs.beforeFirst();
+            Course[] courseList = new Course[row];
+            int i = 0;
+            while(rs.next()){
+                courseList[i] = new Course();
+                courseList[i].setCourseID(rs.getInt(1));
+                courseList[i].setName(rs.getString(2));
+                courseList[i].setDepartmentID(rs.getInt(3));
+                i++;
+            }
+
+            ps.close();
+            con.close();
+            return courseList;
+        }catch(Exception e){
+            System.err.println("studentData.getStudentList ERROR: "+ e);
+        }
+        return null; 
     }
 }

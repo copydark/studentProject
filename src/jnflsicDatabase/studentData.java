@@ -226,6 +226,55 @@ public class studentData {
         return null;
     }
     
+    public static String[] getStudentList(String name, String grade){
+        String stuList[];
+        String sql = "select ic_student.stuID, ic_student.first_name, ic_student.middle_name, ic_student.last_name, ic_student.grade from ic_student";
+        String where = "";
+        if(!name.equals("")){
+            where += " where (first_name like '%"+name+"%' or middle_name like '%"+name+"%' or last_name like '%"+name+"%')";
+            if(grade.equals("ALL")){
+                where += " and (grade = 10 or grade = 11 or grade = 12)";
+            }else{
+                where += " and grade = "+grade;
+            }
+        }else{
+            if(grade.equals("ALL")){
+                where += " where grade = 10 or grade = 11 or grade = 12";
+            }else{
+                where += " where grade = "+grade;
+            }
+        }
+        sql+=where;
+        try{
+            Connection con = connectDatabase.getConnection();
+            PreparedStatement ps;
+            
+            ps = con.prepareStatement(sql);
+            //ps.setInt(1, courseID);
+            System.out.println(ps);
+            
+            ResultSet rs = ps.executeQuery();
+            //int rs = ps.executeUpdate();
+            rs.last();
+            int row = rs.getRow();
+            rs.beforeFirst();
+            stuList = new String[row];
+            int i = 0;
+            while(rs.next()){
+                stuList[i] = "StudentID: "+rs.getString(1)+","+"Student Name: "+rs.getString(2)+" "+rs.getString(3)+" "+rs.getString(4)+", Grade: "+rs.getString(5);
+                //System.out.println("list"+stuList[i]);
+                i++;
+            }
+
+            ps.close();
+            con.close();
+            return stuList;
+        }catch(Exception e){
+            System.err.println("studentData.getStudentList ERROR: "+ e);
+        }
+        return null;
+    }
+    
     public static String[] getStudentList(String name, int grade, String courseInfo, int curPage, int numOfRecordPrePage){
         String stuList[];
         p = new Pages(curPage, numOfRecordPrePage);

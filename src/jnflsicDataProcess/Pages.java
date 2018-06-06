@@ -9,9 +9,9 @@ public class Pages {
     private int totalPages;
     public Pages(int curPage, int numOfRecords){
         numRecordsPrePages = numOfRecords;
-        if(curPage-1<=0){
-            curPage = 0;
-        }
+//        if(curPage-1<=0){
+//            curPage = 0;
+//        }
         firstNumOfRecords = curPage*numOfRecords;
         //System.out.println(firstNumOfR)
         //lastNumOfRecords = firstNumOfRecords + numOfRecords;

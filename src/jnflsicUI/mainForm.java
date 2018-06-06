@@ -53,6 +53,7 @@ public class mainForm extends javax.swing.JFrame {
         jMenuItemManageTeacher = new javax.swing.JMenuItem();
         jMenuClass = new javax.swing.JMenu();
         jMenuItemClassCourse = new javax.swing.JMenuItem();
+        jMenuItemBaseOnStu = new javax.swing.JMenuItem();
 
         jMenu1.setText("jMenu1");
 
@@ -187,6 +188,14 @@ public class mainForm extends javax.swing.JFrame {
         });
         jMenuClass.add(jMenuItemClassCourse);
 
+        jMenuItemBaseOnStu.setText("BaseOnStudent");
+        jMenuItemBaseOnStu.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jMenuItemBaseOnStuActionPerformed(evt);
+            }
+        });
+        jMenuClass.add(jMenuItemBaseOnStu);
+
         jMenuBar1.add(jMenuClass);
 
         setJMenuBar(jMenuBar1);
@@ -276,6 +285,14 @@ public class mainForm extends javax.swing.JFrame {
             MCF.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
     }//GEN-LAST:event_jMenuItemClassCourseActionPerformed
 
+    private void jMenuItemBaseOnStuActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItemBaseOnStuActionPerformed
+            ManageClassStuForm MCSF = new ManageClassStuForm();
+            MCSF.setVisible(true);
+            MCSF.pack();
+            MCSF.setLocationRelativeTo(null);
+            MCSF.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
+    }//GEN-LAST:event_jMenuItemBaseOnStuActionPerformed
+
     /**
      * @param args the command line arguments
      */
@@ -327,6 +344,7 @@ public class mainForm extends javax.swing.JFrame {
     private javax.swing.JMenuItem jMenuItemAddCourse;
     private javax.swing.JMenuItem jMenuItemAddDep;
     private javax.swing.JMenuItem jMenuItemAddTeacher;
+    private javax.swing.JMenuItem jMenuItemBaseOnStu;
     private javax.swing.JMenuItem jMenuItemClassCourse;
     private javax.swing.JMenuItem jMenuItemCourseManage;
     private javax.swing.JMenuItem jMenuItemManDep;

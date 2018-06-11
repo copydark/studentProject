@@ -35,6 +35,10 @@ public class mainForm extends javax.swing.JFrame {
         jMenu2 = new javax.swing.JMenu();
         jMenu3 = new javax.swing.JMenu();
         jMenuItem1 = new javax.swing.JMenuItem();
+        jMenuBar3 = new javax.swing.JMenuBar();
+        jMenu5 = new javax.swing.JMenu();
+        jMenu6 = new javax.swing.JMenu();
+        jMenu7 = new javax.swing.JMenu();
         jPanel1 = new javax.swing.JPanel();
         jLabelWelcome = new javax.swing.JLabel();
         jLabelDateTime = new javax.swing.JLabel();
@@ -54,6 +58,8 @@ public class mainForm extends javax.swing.JFrame {
         jMenuClass = new javax.swing.JMenu();
         jMenuItemClassCourse = new javax.swing.JMenuItem();
         jMenuItemBaseOnStu = new javax.swing.JMenuItem();
+        jMenuSurvey = new javax.swing.JMenu();
+        jMenuSurveyItem = new javax.swing.JMenuItem();
 
         jMenu1.setText("jMenu1");
 
@@ -64,6 +70,14 @@ public class mainForm extends javax.swing.JFrame {
         jMenuBar2.add(jMenu3);
 
         jMenuItem1.setText("jMenuItem1");
+
+        jMenu5.setText("File");
+        jMenuBar3.add(jMenu5);
+
+        jMenu6.setText("Edit");
+        jMenuBar3.add(jMenu6);
+
+        jMenu7.setText("jMenu7");
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -198,6 +212,18 @@ public class mainForm extends javax.swing.JFrame {
 
         jMenuBar1.add(jMenuClass);
 
+        jMenuSurvey.setText("Survey");
+
+        jMenuSurveyItem.setText("Survey");
+        jMenuSurveyItem.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jMenuSurveyItemActionPerformed(evt);
+            }
+        });
+        jMenuSurvey.add(jMenuSurveyItem);
+
+        jMenuBar1.add(jMenuSurvey);
+
         setJMenuBar(jMenuBar1);
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
@@ -293,6 +319,14 @@ public class mainForm extends javax.swing.JFrame {
             MCSF.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
     }//GEN-LAST:event_jMenuItemBaseOnStuActionPerformed
 
+    private void jMenuSurveyItemActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuSurveyItemActionPerformed
+            ManageSurveryList MSL = new ManageSurveryList();
+            MSL.setVisible(true);
+            MSL.pack();
+            MSL.setLocationRelativeTo(null);
+            MSL.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
+    }//GEN-LAST:event_jMenuSurveyItemActionPerformed
+
     /**
      * @param args the command line arguments
      */
@@ -335,8 +369,12 @@ public class mainForm extends javax.swing.JFrame {
     private javax.swing.JMenu jMenu2;
     private javax.swing.JMenu jMenu3;
     private javax.swing.JMenu jMenu4;
+    private javax.swing.JMenu jMenu5;
+    private javax.swing.JMenu jMenu6;
+    private javax.swing.JMenu jMenu7;
     private javax.swing.JMenuBar jMenuBar1;
     private javax.swing.JMenuBar jMenuBar2;
+    private javax.swing.JMenuBar jMenuBar3;
     private javax.swing.JMenu jMenuClass;
     private javax.swing.JMenu jMenuCourse;
     private javax.swing.JMenuItem jMenuItem1;
@@ -351,6 +389,8 @@ public class mainForm extends javax.swing.JFrame {
     private javax.swing.JMenuItem jMenuItemManageTeacher;
     private javax.swing.JMenuItem jMenuItemStuManage;
     private javax.swing.JMenu jMenuSt;
+    private javax.swing.JMenu jMenuSurvey;
+    private javax.swing.JMenuItem jMenuSurveyItem;
     private javax.swing.JMenu jMenuTeacher;
     private javax.swing.JPanel jPanel1;
     // End of variables declaration//GEN-END:variables

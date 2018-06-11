@@ -339,17 +339,28 @@ public class ManageSurveryList extends javax.swing.JFrame {
 
         DefaultTableModel dtm2 = (DefaultTableModel)jTable1.getModel();
         int row = dtm2.getRowCount();
-        surveyListDataOrg s[] = new surveyListDataOrg [row];
-        for(int i = 0; i<s.length; i++){
-           s[i]= new surveyListDataOrg();
-           s[i].setTeacherID(Integer.parseInt(dtm2.getValueAt(i, 0).toString()));
-           s[i].setTeacherName(dtm2.getValueAt(i, 1).toString());
-           s[i].setCourseName(dtm2.getValueAt(i, 2).toString());
-           s[i].setCourseArea(dtm2.getValueAt(i, 3).toString());
-           s[i].setGrade(Integer.parseInt(dtm2.getValueAt(i, 4).toString()));
+        int count = 0;
+        for(int i = 0; i<row; i++){
+            if(Boolean.parseBoolean(dtm2.getValueAt(i, 5).toString())){
+                count++;
+            }
+        }
+        surveyListDataOrg s[] = new surveyListDataOrg [count];
+        int j = 0;
+        for(int i = 0; i<row; i++){
+            if(Boolean.parseBoolean(dtm2.getValueAt(i, 5).toString())){
+               s[j]= new surveyListDataOrg();
+               s[j].setTeacherID(Integer.parseInt(dtm2.getValueAt(i, 0).toString()));
+               s[j].setTeacherName(dtm2.getValueAt(i, 1).toString());
+               s[j].setCourseName(dtm2.getValueAt(i, 2).toString());
+               s[j].setCourseArea(dtm2.getValueAt(i, 3).toString());
+               s[j].setGrade(Integer.parseInt(dtm2.getValueAt(i, 4).toString()));
+               j++;
+            }
         }
         try {
             surveyOutput.generateHtml(s);
+            JOptionPane.showMessageDialog(null, "Generate a group of files");
         } catch (TemplateException ex) {
             Logger.getLogger(ManageSurveryList.class.getName()).log(Level.SEVERE, null, ex);
         } catch (IOException ex) {

@@ -18,7 +18,7 @@ public class surveyListDataManage {
         p = new Pages(curPage, numRecordPrePage);
         try {
             //String firstName, String middleName, String lastName, char sex, int grade, Calendar birthday, int year, String phoneNum, String add
-            String sql = "select m.teacherID, m.courseName, m.courseArea, ic_teacher.teaSurName, ic_teacher.teaMidName, ic_teacher.teaFirName from \n" +
+            String sql = "select m.teacherID, m.courseName, m.courseArea, ic_teacher.teaSurName, ic_teacher.teaMidName, ic_teacher.teaFirName, m.grade from \n" +
                         "(select h.grade, ic_course.courseName, ic_course.courseDepartmentID, ic_course.courseArea, ic_course.teacherID from \n" +
                         "(SELECT ic_class.courseID, ic_student.grade FROM ic_class left join ic_student on ic_student.stuID = ic_class.studentID where ic_student.grade is not null group by ic_class.courseID) h \n" +
                         "left join ic_course on h.courseID = ic_course.courseID";
@@ -73,7 +73,7 @@ public class surveyListDataManage {
                 s[i].setTeacherID(rs.getInt(1));
                 s[i].setCourseName(rs.getString(2));
                 s[i].setCourseArea(rs.getString(3));
-                s[i].setGrade(grade);
+                s[i].setGrade(rs.getInt(7));
                 s[i].setTeacherName(rs.getString(4)+" "+rs.getString(5)+" "+rs.getString(6));
                 i++;
             }               

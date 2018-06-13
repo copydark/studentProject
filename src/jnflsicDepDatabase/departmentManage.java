@@ -13,7 +13,7 @@ import jnflsicDepDataProcess.Department;
 public class departmentManage {
     private static Pages p;
     public static Department[] getDepartment(String keyword, String leader, int numOfRecordPrePage, int curPage){
-       p = new Pages(curPage, numOfRecordPrePage);
+       p = new Pages(curPage-1, numOfRecordPrePage);
        
         try {
             //String firstName, String middleName, String lastName, char sex, int grade, Calendar birthday, int year, String phoneNum, String add

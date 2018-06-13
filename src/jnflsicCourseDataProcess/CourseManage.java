@@ -16,7 +16,7 @@ import jnflsicDataProcess.Student;
 public class CourseManage {
     private static Pages p;
     public static Course[] getCourse(String keyword, int departmentID, String area, int numOfRecordPrePage, int curPage){
-       p = new Pages(curPage, numOfRecordPrePage);
+       p = new Pages(curPage-1, numOfRecordPrePage);
        
         try {
             //String firstName, String middleName, String lastName, char sex, int grade, Calendar birthday, int year, String phoneNum, String add

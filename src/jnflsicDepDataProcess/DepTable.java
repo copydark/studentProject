@@ -28,7 +28,7 @@ public class DepTable {
             row = new Object[col];    
             //for(int j = 0; j < col; j++){
             row[0] = d[i].getID();
-            //System.out.println("lalalalala"+row[0]);
+            System.out.println("lalalalala"+row[0]);
             row[1] = d[i].getName();
             row[2] = d[i].getLeader();
             row[3] = d[i].getPhone();

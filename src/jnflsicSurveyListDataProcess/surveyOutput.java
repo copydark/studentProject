@@ -22,7 +22,7 @@ public class surveyOutput {
         Template template = config.getTemplate("htmlTemplate.ftl");
         root.put("surveyLists", list);
         root.put("Grade", s[0].getGrade());
-        File outFile = new File("D:/" + "html" + 0 + ".html");
+        File outFile = new File("C:\\xampp\\tomcat\\webapps\\ROOT\\grade12\\html0.html");
         Writer out = new BufferedWriter(new OutputStreamWriter(new FileOutputStream(outFile), "utf-8"), 10240);
 
                 //数据与模板合并（数据+模板=输出）

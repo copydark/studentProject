@@ -34,7 +34,7 @@ public class teacherManage {
 //    }
     
     public static Teacher[] getTeacher(String keyword, String pos, String deg, int depID, String v, String has,  int numOfRecordPrePage, int curPage){
-       p = new Pages(curPage, numOfRecordPrePage);
+       p = new Pages(curPage-1, numOfRecordPrePage);
 //       int vInt = v?1:0;
 //       int hInt = has?1:0;
        

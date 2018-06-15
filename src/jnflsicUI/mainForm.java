@@ -60,6 +60,7 @@ public class mainForm extends javax.swing.JFrame {
         jMenuItemBaseOnStu = new javax.swing.JMenuItem();
         jMenuSurvey = new javax.swing.JMenu();
         jMenuSurveyItem = new javax.swing.JMenuItem();
+        jMenuItemSurveyReport = new javax.swing.JMenuItem();
 
         jMenu1.setText("jMenu1");
 
@@ -222,6 +223,14 @@ public class mainForm extends javax.swing.JFrame {
         });
         jMenuSurvey.add(jMenuSurveyItem);
 
+        jMenuItemSurveyReport.setText("SurveyReport");
+        jMenuItemSurveyReport.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jMenuItemSurveyReportActionPerformed(evt);
+            }
+        });
+        jMenuSurvey.add(jMenuItemSurveyReport);
+
         jMenuBar1.add(jMenuSurvey);
 
         setJMenuBar(jMenuBar1);
@@ -327,6 +336,14 @@ public class mainForm extends javax.swing.JFrame {
             MSL.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
     }//GEN-LAST:event_jMenuSurveyItemActionPerformed
 
+    private void jMenuItemSurveyReportActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItemSurveyReportActionPerformed
+            ManageSurveryReport MSR = new ManageSurveryReport();
+            MSR.setVisible(true);
+            MSR.pack();
+            MSR.setLocationRelativeTo(null);
+            MSR.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
+    }//GEN-LAST:event_jMenuItemSurveyReportActionPerformed
+
     /**
      * @param args the command line arguments
      */
@@ -388,6 +405,7 @@ public class mainForm extends javax.swing.JFrame {
     private javax.swing.JMenuItem jMenuItemManDep;
     private javax.swing.JMenuItem jMenuItemManageTeacher;
     private javax.swing.JMenuItem jMenuItemStuManage;
+    private javax.swing.JMenuItem jMenuItemSurveyReport;
     private javax.swing.JMenu jMenuSt;
     private javax.swing.JMenu jMenuSurvey;
     private javax.swing.JMenuItem jMenuSurveyItem;

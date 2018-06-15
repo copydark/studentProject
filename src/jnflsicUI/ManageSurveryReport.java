@@ -343,9 +343,9 @@ public class ManageSurveryReport extends javax.swing.JFrame {
         String department = jComboBoxDepartment.getSelectedItem().toString();
         String area = jComboBoxArea.getSelectedItem().toString();
         int grade = jComboBoxGrade.getSelectedIndex();
-        if(grade!=0){
-            grade = grade +9;
-        }
+//        if(grade!=0){
+//            grade = grade +9;
+//        }
         int col = dtm2.getColumnCount();
         surveyReportListTable.fillSurveyListJTable(dtm2, department, area, grade, QuestionsCount, 5+QuestionsCount, 0, 10);
         

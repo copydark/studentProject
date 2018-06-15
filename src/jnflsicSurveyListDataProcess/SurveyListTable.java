@@ -6,7 +6,7 @@ import jnflsicSurveyListDatabase.surveyListDataManage;
 
 
 public class SurveyListTable {
-    
+
     public static void fillSurveyListJTable(DefaultTableModel model, String department, String area, int grade, int col, int curPage, int numRecordPrePage) {
         surveyListDataOrg s[] = surveyListDataManage.getsurevyListData(department, area, grade, curPage, numRecordPrePage);
         //System.out.println("s0:"+s[0].getID());
